@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Git hooks are shell scripts and must keep LF line endings
+.husky/** text eol=lf

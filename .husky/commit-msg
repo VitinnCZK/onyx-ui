@@ -1,0 +1,2 @@
+# Call node directly: GUI clients (e.g. GitHub Desktop) bundle a Git that cannot run the npx shell shim.
+node ./node_modules/@commitlint/cli/cli.js --edit "$1"
