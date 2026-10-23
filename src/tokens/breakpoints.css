@@ -1,0 +1,12 @@
+/*
+ * Breakpoints (minimum viewport widths). CSS custom properties can't be read inside
+ * @media, so these are for reference and JavaScript; media queries repeat the values.
+ * Mirrors breakpoints.ts.
+ */
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}

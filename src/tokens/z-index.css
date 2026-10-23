@@ -1,0 +1,10 @@
+/*
+ * Stacking order of floating layers, lowest to highest. Mirrors z-index.ts.
+ */
+:root {
+  --z-index-dropdown: 1000;
+  --z-index-overlay: 1100;
+  --z-index-modal: 1200;
+  --z-index-toast: 1300;
+  --z-index-tooltip: 1400;
+}

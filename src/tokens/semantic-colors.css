@@ -1,0 +1,66 @@
+/*
+ * Semantic colors: the only colors components use. They point at the palette, so a theme
+ * (e.g. `[data-theme='dark']`) only has to redefine this block. Mirrors `semantic-colors.ts`.
+ */
+:root {
+  /* Backgrounds and surfaces */
+  --color-bg: var(--color-white);
+  --color-bg-subtle: var(--color-neutral-50);
+  --color-bg-muted: var(--color-neutral-100);
+  --color-bg-inverse: var(--color-neutral-900);
+  --color-surface: var(--color-white);
+  --color-surface-raised: var(--color-white);
+  --color-backdrop: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+
+  /* Text */
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-600);
+  --color-text-disabled: var(--color-neutral-400);
+  --color-text-inverse: var(--color-white);
+
+  /* Borders and focus. `border` is decorative; `border-strong` identifies controls (3:1). */
+  --color-border: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-500);
+  --color-focus: var(--color-primary-600);
+
+  /* Intents: solid fill (+ hover/active), text on the fill, subtle background, text, border */
+  --color-primary: var(--color-primary-600);
+  --color-primary-hover: var(--color-primary-700);
+  --color-primary-active: var(--color-primary-800);
+  --color-on-primary: var(--color-white);
+  --color-primary-subtle: var(--color-primary-50);
+  --color-primary-text: var(--color-primary-700);
+  --color-primary-border: var(--color-primary-200);
+
+  --color-success: var(--color-success-700);
+  --color-success-hover: var(--color-success-800);
+  --color-success-active: var(--color-success-900);
+  --color-on-success: var(--color-white);
+  --color-success-subtle: var(--color-success-50);
+  --color-success-text: var(--color-success-800);
+  --color-success-border: var(--color-success-200);
+
+  --color-warning: var(--color-warning-700);
+  --color-warning-hover: var(--color-warning-800);
+  --color-warning-active: var(--color-warning-900);
+  --color-on-warning: var(--color-white);
+  --color-warning-subtle: var(--color-warning-50);
+  --color-warning-text: var(--color-warning-800);
+  --color-warning-border: var(--color-warning-200);
+
+  --color-danger: var(--color-danger-600);
+  --color-danger-hover: var(--color-danger-700);
+  --color-danger-active: var(--color-danger-800);
+  --color-on-danger: var(--color-white);
+  --color-danger-subtle: var(--color-danger-50);
+  --color-danger-text: var(--color-danger-700);
+  --color-danger-border: var(--color-danger-200);
+
+  --color-info: var(--color-info-700);
+  --color-info-hover: var(--color-info-800);
+  --color-info-active: var(--color-info-900);
+  --color-on-info: var(--color-white);
+  --color-info-subtle: var(--color-info-50);
+  --color-info-text: var(--color-info-800);
+  --color-info-border: var(--color-info-200);
+}
