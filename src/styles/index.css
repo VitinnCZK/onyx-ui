@@ -13,6 +13,7 @@
 @import '../tokens/z-index.css';
 @import '../tokens/breakpoints.css';
 @import '../tokens/focus.css';
+@import '../tokens/sizes.css';
 
 /* Themes: the semantic layer, light by default */
 @import './themes/light.css';

@@ -34,6 +34,10 @@ export const lightColors = {
   'border-strong': ref('neutral', 500),
   focus: ref('primary', 600),
 
+  /** Translucent layers for hovered and pressed items, over any surface. */
+  'state-hover': `color-mix(in srgb, ${ref('neutral', 900)} 6%, transparent)`,
+  'state-active': `color-mix(in srgb, ${ref('neutral', 900)} 12%, transparent)`,
+
   primary: ref('primary', 600),
   'primary-hover': ref('primary', 700),
   'primary-active': ref('primary', 800),
@@ -98,6 +102,9 @@ export const darkColors = {
   border: ref('neutral', 700),
   'border-strong': ref('neutral', 400),
   focus: ref('primary', 300),
+
+  'state-hover': `color-mix(in srgb, ${ref('white')} 8%, transparent)`,
+  'state-active': `color-mix(in srgb, ${ref('white')} 14%, transparent)`,
 
   primary: ref('primary', 400),
   'primary-hover': ref('primary', 300),

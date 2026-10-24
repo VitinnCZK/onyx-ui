@@ -1,0 +1,107 @@
+.text {
+  --text-lines: 2;
+  margin: 0;
+}
+
+.sizeInherit {
+  font-size: inherit;
+}
+
+.sizeXs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+
+.sizeSm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.sizeMd {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+}
+
+.sizeLg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.sizeXl {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+}
+
+.regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.toneDefault {
+  color: var(--color-text);
+}
+
+.toneMuted {
+  color: var(--color-text-muted);
+}
+
+.toneInherit {
+  color: inherit;
+}
+
+.tonePrimary {
+  color: var(--color-primary-text);
+}
+
+.toneSuccess {
+  color: var(--color-success-text);
+}
+
+.toneWarning {
+  color: var(--color-warning-text);
+}
+
+.toneDanger {
+  color: var(--color-danger-text);
+}
+
+.toneInfo {
+  color: var(--color-info-text);
+}
+
+.start {
+  text-align: start;
+}
+
+.center {
+  text-align: center;
+}
+
+.end {
+  text-align: end;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: var(--text-lines);
+  line-clamp: var(--text-lines);
+  -webkit-box-orient: vertical;
+}

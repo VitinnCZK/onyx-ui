@@ -1,0 +1,85 @@
+.badge {
+  display: inline-flex;
+  gap: var(--space-1);
+  align-items: center;
+  max-width: 100%;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  white-space: nowrap;
+  vertical-align: middle;
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--radius-full);
+}
+
+.sm {
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.md {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.neutral {
+  --badge-solid: var(--color-bg-inverse);
+  --badge-on-solid: var(--color-text-inverse);
+  --badge-subtle: var(--color-bg-muted);
+  --badge-text: var(--color-text);
+  --badge-border: var(--color-border-strong);
+}
+
+.primary {
+  --badge-solid: var(--color-primary);
+  --badge-on-solid: var(--color-on-primary);
+  --badge-subtle: var(--color-primary-subtle);
+  --badge-text: var(--color-primary-text);
+  --badge-border: var(--color-primary);
+}
+
+.success {
+  --badge-solid: var(--color-success);
+  --badge-on-solid: var(--color-on-success);
+  --badge-subtle: var(--color-success-subtle);
+  --badge-text: var(--color-success-text);
+  --badge-border: var(--color-success);
+}
+
+.warning {
+  --badge-solid: var(--color-warning);
+  --badge-on-solid: var(--color-on-warning);
+  --badge-subtle: var(--color-warning-subtle);
+  --badge-text: var(--color-warning-text);
+  --badge-border: var(--color-warning);
+}
+
+.danger {
+  --badge-solid: var(--color-danger);
+  --badge-on-solid: var(--color-on-danger);
+  --badge-subtle: var(--color-danger-subtle);
+  --badge-text: var(--color-danger-text);
+  --badge-border: var(--color-danger);
+}
+
+.info {
+  --badge-solid: var(--color-info);
+  --badge-on-solid: var(--color-on-info);
+  --badge-subtle: var(--color-info-subtle);
+  --badge-text: var(--color-info-text);
+  --badge-border: var(--color-info);
+}
+
+.subtle {
+  color: var(--badge-text);
+  background-color: var(--badge-subtle);
+}
+
+.solid {
+  color: var(--badge-on-solid);
+  background-color: var(--badge-solid);
+}
+
+.outline {
+  color: var(--badge-text);
+  border-color: var(--badge-border);
+}

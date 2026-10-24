@@ -26,6 +26,10 @@
   --color-border-strong: var(--color-neutral-500);
   --color-focus: var(--color-primary-600);
 
+  /* Translucent layers for hovered and pressed items, over any surface */
+  --color-state-hover: color-mix(in srgb, var(--color-neutral-900) 6%, transparent);
+  --color-state-active: color-mix(in srgb, var(--color-neutral-900) 12%, transparent);
+
   /* Intents: solid fill (+ hover/active), text on the fill, subtle background, text, border */
   --color-primary: var(--color-primary-600);
   --color-primary-hover: var(--color-primary-700);

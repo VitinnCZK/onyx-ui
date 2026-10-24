@@ -1,0 +1,36 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--size-overlay-md);
+}
+
+.page {
+  min-height: 100dvh;
+  padding: var(--space-4);
+}
+
+.centered {
+  display: grid;
+  place-items: center;
+  min-height: var(--size-overlay-sm);
+}
+
+.narrow {
+  max-width: var(--size-menu);
+}
+
+.scrollBox {
+  max-height: var(--size-overlay-sm);
+}
+
+.wide {
+  display: grid;
+  gap: var(--space-4);
+}

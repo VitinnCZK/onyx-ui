@@ -4,6 +4,7 @@ import { focusRing } from './focus';
 import { duration, easing, reducedMotionDuration } from './motion';
 import { radius } from './radius';
 import { shadows } from './shadows';
+import { borderWidth, sizes } from './sizes';
 import { spacing } from './spacing';
 import { themes, type ThemeName } from './themes';
 import { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } from './typography';
@@ -15,6 +16,7 @@ export * from './focus';
 export * from './motion';
 export * from './radius';
 export * from './shadows';
+export * from './sizes';
 export * from './spacing';
 export * from './themes';
 export * from './typography';
@@ -50,6 +52,8 @@ export const cssVariables: Record<CssVariable, string> = {
   ...prefixed('z-index', zIndex),
   ...prefixed('breakpoint', breakpoints),
   ...prefixed('focus-ring', focusRing),
+  ...prefixed('size', sizes),
+  ...prefixed('border-width', borderWidth),
 };
 
 /** Variables each theme declares in its `[data-theme='<name>']` block. */

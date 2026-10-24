@@ -1,0 +1,28 @@
+.iconButton {
+  padding-inline: 0;
+}
+
+.icon {
+  display: inline-flex;
+}
+
+.sm {
+  min-width: var(--size-control-sm);
+  font-size: var(--size-icon-sm);
+}
+
+.md {
+  min-width: var(--size-control-md);
+  font-size: var(--size-icon-md);
+}
+
+.lg {
+  min-width: var(--size-control-lg);
+  font-size: var(--size-icon-lg);
+}
+
+@media (pointer: coarse) {
+  .iconButton {
+    min-width: var(--size-touch-target);
+  }
+}

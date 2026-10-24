@@ -1,0 +1,52 @@
+.root {
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.panel {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  animation: modal-in var(--duration-normal) var(--easing-enter);
+}
+
+.sm {
+  max-width: var(--size-overlay-sm);
+}
+
+.md {
+  max-width: var(--size-overlay-md);
+}
+
+.lg {
+  max-width: var(--size-overlay-lg);
+}
+
+.full {
+  max-width: none;
+  height: 100%;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+
+@media (width < 640px) {
+  .root {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .panel {
+    max-width: none;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .full {
+    border-radius: 0;
+  }
+}

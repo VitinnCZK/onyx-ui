@@ -28,7 +28,7 @@ const tabbableSelector = [
   '[tabindex]',
 ].join(',');
 
-function getTabbable(container: HTMLElement): HTMLElement[] {
+export function getTabbable(container: HTMLElement): HTMLElement[] {
   return [...container.querySelectorAll<HTMLElement>(tabbableSelector)].filter(
     (element) =>
       element.tabIndex >= 0 &&

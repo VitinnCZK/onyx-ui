@@ -6,3 +6,5 @@ export { useEscapeKey } from './useEscapeKey';
 export type { UseEscapeKeyOptions } from './useEscapeKey';
 export { useFocusTrap } from './useFocusTrap';
 export type { UseFocusTrapOptions } from './useFocusTrap';
+export { useScrollLock } from './useScrollLock';
+export type { UseScrollLockOptions } from './useScrollLock';

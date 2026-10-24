@@ -1,0 +1,39 @@
+.link {
+  composes: focusRing from '../../styles/focus-ring.module.css';
+  text-decoration-line: underline;
+  text-decoration-thickness: var(--border-width-thin);
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition-timing-function: var(--easing-standard);
+  transition-duration: var(--duration-fast);
+  transition-property: color, text-decoration-color, text-decoration-thickness;
+}
+
+.link:hover {
+  text-decoration-thickness: var(--border-width-thick);
+}
+
+.default {
+  color: var(--color-primary-text);
+}
+
+.default:active {
+  color: var(--color-text);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.muted:hover {
+  color: var(--color-text);
+}
+
+.inherit {
+  color: inherit;
+}
+
+.externalIcon {
+  font-size: 0.875em;
+}

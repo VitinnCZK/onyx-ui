@@ -1,0 +1,27 @@
+.field {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.helper,
+.error {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.helper {
+  color: var(--color-text-muted);
+}
+
+.error {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+  color: var(--color-danger-text);
+}
+
+.errorIcon {
+  flex-shrink: 0;
+}

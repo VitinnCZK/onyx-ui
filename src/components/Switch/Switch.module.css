@@ -1,0 +1,45 @@
+.switch {
+  --switch-gap: var(--border-width-thick);
+  --switch-width: calc(var(--choice-size) * 1.8);
+  --switch-thumb: calc(var(--choice-size) - var(--switch-gap) * 2);
+  --switch-travel: calc(var(--switch-width) - var(--switch-thumb) - var(--switch-gap) * 2);
+}
+
+.track {
+  justify-items: start;
+  width: var(--switch-width);
+  padding-inline: var(--switch-gap);
+  background-color: var(--color-border-strong);
+  border: 0;
+  border-radius: var(--radius-full);
+}
+
+.thumb {
+  width: var(--switch-thumb);
+  height: var(--switch-thumb);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  transition: translate var(--duration-normal) var(--easing-standard);
+}
+
+:checked + .track .thumb {
+  translate: var(--switch-travel);
+}
+
+:dir(rtl) :checked + .track .thumb {
+  translate: calc(var(--switch-travel) * -1);
+}
+
+:hover:not(:disabled, :checked) + .track {
+  background-color: var(--color-text-muted);
+}
+
+:disabled + .track {
+  background-color: var(--color-bg-muted);
+}
+
+:disabled + .track .thumb {
+  background-color: var(--color-text-disabled);
+  box-shadow: none;
+}

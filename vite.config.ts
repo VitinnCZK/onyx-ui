@@ -31,7 +31,7 @@ export default defineConfig({
     },
     sourcemap: true,
     rolldownOptions: {
-      external: [/^react($|\/)/, /^react-dom($|\/)/],
+      external: [/^react($|\/)/, /^react-dom($|\/)/, /^@floating-ui\//],
       output: {
         // One output file per source module keeps the package tree-shakeable.
         preserveModules: true,

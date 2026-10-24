@@ -1,0 +1,111 @@
+.menu {
+  z-index: var(--z-index-dropdown);
+  display: flex;
+  flex-direction: column;
+  min-width: var(--size-menu);
+  max-width: var(--size-overlay-sm);
+  padding: var(--space-1);
+  overflow-y: auto;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background-color: var(--color-surface-raised);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  outline: none;
+  animation: menu-in var(--duration-fast) var(--easing-enter);
+}
+
+.item {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  width: 100%;
+  min-height: var(--size-control-sm);
+  padding: var(--space-1) var(--space-2);
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-md);
+  outline: none;
+}
+
+.item:focus {
+  background-color: var(--color-state-hover);
+}
+
+.item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+.item:active:not([aria-disabled='true']) {
+  background-color: var(--color-state-active);
+}
+
+.item[aria-disabled='true'] {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.destructive:not([aria-disabled='true']) {
+  color: var(--color-danger-text);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: var(--size-icon-sm);
+  color: var(--color-text-muted);
+}
+
+.destructive .icon {
+  color: inherit;
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+}
+
+.shortcut {
+  margin-inline-start: var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupLabel {
+  padding: var(--space-2) var(--space-2) var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.separator {
+  height: var(--border-width-thin);
+  margin: var(--space-1) calc(var(--space-1) * -1);
+  background-color: var(--color-border);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+
+@media (pointer: coarse) {
+  .item {
+    min-height: var(--size-touch-target);
+  }
+}

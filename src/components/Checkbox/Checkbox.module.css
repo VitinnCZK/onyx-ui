@@ -1,0 +1,17 @@
+.box {
+  border-radius: var(--radius-sm);
+}
+
+.check,
+.dash {
+  grid-area: 1 / 1;
+  width: 80%;
+  height: 80%;
+  stroke-width: 3;
+  visibility: hidden;
+}
+
+:checked:not(:indeterminate) + .box .check,
+:indeterminate + .box .dash {
+  visibility: visible;
+}

@@ -1,0 +1,22 @@
+/*
+ * Component dimensions and border widths. Mirrors sizes.ts.
+ */
+:root {
+  --size-icon-xs: 0.75rem;
+  --size-icon-sm: 1rem;
+  --size-icon-md: 1.25rem;
+  --size-icon-lg: 1.5rem;
+  --size-icon-xl: 2rem;
+  --size-control-sm: 2rem;
+  --size-control-md: 2.5rem;
+  --size-control-lg: 3rem;
+  --size-touch-target: 2.75rem;
+  --size-tooltip: 20rem;
+  --size-menu: 12rem;
+  --size-overlay-sm: 24rem;
+  --size-overlay-md: 32rem;
+  --size-overlay-lg: 48rem;
+
+  --border-width-thin: 1px;
+  --border-width-thick: 2px;
+}

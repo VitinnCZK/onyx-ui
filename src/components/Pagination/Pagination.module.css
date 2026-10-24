@@ -1,0 +1,84 @@
+.pagination {
+  --pagination-size: var(--size-control-md);
+}
+
+.sm {
+  --pagination-size: var(--size-control-sm);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.button {
+  composes: focusRing from '../../styles/focus-ring.module.css';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--pagination-size);
+  height: var(--pagination-size);
+  padding-inline: var(--space-2);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+  cursor: pointer;
+  background: transparent;
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--radius-md);
+  transition-timing-function: var(--easing-standard);
+  transition-duration: var(--duration-fast);
+  transition-property: background-color, border-color, color;
+}
+
+.button:hover:not([aria-disabled='true'], [aria-current='page']) {
+  background-color: var(--color-state-hover);
+}
+
+.button:active:not([aria-disabled='true'], [aria-current='page']) {
+  background-color: var(--color-state-active);
+}
+
+.button[aria-current='page'] {
+  color: var(--color-on-primary);
+  cursor: default;
+  background-color: var(--color-primary);
+}
+
+.button[aria-disabled='true'] {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.step {
+  border-color: var(--color-border);
+}
+
+.icon {
+  font-size: var(--size-icon-sm);
+}
+
+:dir(rtl) .icon {
+  scale: -1 1;
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--pagination-size);
+  color: var(--color-text-muted);
+}
+
+@media (pointer: coarse) {
+  .pagination {
+    --pagination-size: var(--size-touch-target);
+  }
+}

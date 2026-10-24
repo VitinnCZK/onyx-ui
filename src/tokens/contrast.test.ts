@@ -35,6 +35,8 @@ const exempt: Partial<Record<SemanticColor, string>> = {
   'text-disabled': 'WCAG 1.4.3 exempts text of inactive components',
   backdrop: 'dims the page behind overlays; never sits behind text it has to keep legible',
   border: 'decorative; borders that identify a control use border-strong',
+  'state-hover': 'translucent layer over a surface; text and borders keep their own colors',
+  'state-active': 'translucent layer over a surface; text and borders keep their own colors',
   ...Object.fromEntries(
     intents.map((intent) => [`${intent}-border`, 'decorative; the subtle background carries text']),
   ),

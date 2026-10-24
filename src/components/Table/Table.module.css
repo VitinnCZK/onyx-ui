@@ -1,0 +1,164 @@
+.wrapper {
+  max-width: 100%;
+  overflow: auto;
+  background-color: var(--color-surface);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.wrapper:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.table {
+  --table-cell-y: var(--space-3);
+  --table-cell-x: var(--space-4);
+
+  width: 100%;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.compact {
+  --table-cell-y: var(--space-2);
+  --table-cell-x: var(--space-3);
+}
+
+.caption {
+  padding: var(--space-3) var(--table-cell-x);
+  font-weight: var(--font-weight-semibold);
+  text-align: start;
+  caption-side: top;
+}
+
+.hidden {
+  position: absolute;
+  width: var(--border-width-thin);
+  height: var(--border-width-thin);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.headerCell {
+  padding: var(--table-cell-y) var(--table-cell-x);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  text-align: start;
+  white-space: nowrap;
+  background-color: var(--color-bg-subtle);
+  border-bottom: var(--border-width-thin) solid var(--color-border);
+}
+
+.sticky .headerCell {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.headerCell:has(.sortButton) {
+  padding: 0;
+}
+
+.sortButton {
+  composes: focusRing from '../../styles/focus-ring.module.css';
+  --focus-ring-offset: calc(var(--focus-ring-width) * -1);
+
+  display: inline-flex;
+  gap: var(--space-1);
+  align-items: center;
+  width: 100%;
+  min-height: var(--size-control-md);
+  padding: var(--table-cell-y) var(--table-cell-x);
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  transition: color var(--duration-fast) var(--easing-standard);
+}
+
+.sortButton:hover {
+  color: var(--color-text);
+  background-color: var(--color-state-hover);
+}
+
+.sortButton:active {
+  background-color: var(--color-state-active);
+}
+
+.end .sortButton {
+  flex-direction: row-reverse;
+}
+
+.center .sortButton {
+  justify-content: center;
+}
+
+.sortIcon {
+  flex-shrink: 0;
+  font-size: var(--size-icon-sm);
+  opacity: 0.6;
+}
+
+.sortIconActive {
+  color: var(--color-primary-text);
+  opacity: 1;
+}
+
+.cell {
+  padding: var(--table-cell-y) var(--table-cell-x);
+  text-align: start;
+  vertical-align: middle;
+  border-bottom: var(--border-width-thin) solid var(--color-border);
+}
+
+.rowHeader {
+  font-weight: var(--font-weight-medium);
+}
+
+.row:last-child .cell {
+  border-bottom: 0;
+}
+
+.row:hover {
+  background-color: var(--color-state-hover);
+}
+
+.striped .row:nth-child(even) {
+  background-color: var(--color-bg-subtle);
+}
+
+.striped .row:nth-child(even):hover {
+  background-image: linear-gradient(var(--color-state-hover), var(--color-state-hover));
+}
+
+.center {
+  text-align: center;
+}
+
+.end {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  padding: var(--space-8) var(--table-cell-x);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.table[aria-busy='true'] tbody {
+  opacity: 0.6;
+}
+
+@media (pointer: coarse) {
+  .sortButton {
+    min-height: var(--size-touch-target);
+  }
+}

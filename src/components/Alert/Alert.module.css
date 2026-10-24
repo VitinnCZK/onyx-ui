@@ -1,0 +1,103 @@
+.alert {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--radius-lg);
+}
+
+.info {
+  --alert-solid: var(--color-info);
+  --alert-on-solid: var(--color-on-info);
+  --alert-subtle: var(--color-info-subtle);
+  --alert-text: var(--color-info-text);
+  --alert-border: var(--color-info-border);
+}
+
+.success {
+  --alert-solid: var(--color-success);
+  --alert-on-solid: var(--color-on-success);
+  --alert-subtle: var(--color-success-subtle);
+  --alert-text: var(--color-success-text);
+  --alert-border: var(--color-success-border);
+}
+
+.warning {
+  --alert-solid: var(--color-warning);
+  --alert-on-solid: var(--color-on-warning);
+  --alert-subtle: var(--color-warning-subtle);
+  --alert-text: var(--color-warning-text);
+  --alert-border: var(--color-warning-border);
+}
+
+.danger {
+  --alert-solid: var(--color-danger);
+  --alert-on-solid: var(--color-on-danger);
+  --alert-subtle: var(--color-danger-subtle);
+  --alert-text: var(--color-danger-text);
+  --alert-border: var(--color-danger-border);
+}
+
+.subtle {
+  color: var(--color-text);
+  background-color: var(--alert-subtle);
+  border-color: var(--alert-border);
+}
+
+.subtle .icon,
+.subtle .title {
+  color: var(--alert-text);
+}
+
+.solid {
+  color: var(--alert-on-solid);
+  background-color: var(--alert-solid);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 1lh;
+}
+
+.icon > svg {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.content {
+  display: grid;
+  flex: 1;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+}
+
+.description {
+  min-width: 0;
+}
+
+.description > :where(p) {
+  margin: 0;
+}
+
+.action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.dismiss {
+  margin-block: calc(var(--space-1) * -1);
+  margin-inline-end: calc(var(--space-2) * -1);
+  color: inherit;
+}

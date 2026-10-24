@@ -1,0 +1,35 @@
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.inherit {
+  width: 1em;
+  height: 1em;
+}
+
+.xs {
+  width: var(--size-icon-xs);
+  height: var(--size-icon-xs);
+}
+
+.sm {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.md {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.lg {
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.xl {
+  width: var(--size-icon-xl);
+  height: var(--size-icon-xl);
+}

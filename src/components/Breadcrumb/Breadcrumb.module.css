@@ -1,0 +1,63 @@
+.breadcrumb {
+  min-width: 0;
+  font-size: var(--font-size-sm);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--space-1);
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.separator {
+  display: inline-flex;
+  margin-inline: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.item:first-child .separator {
+  display: none;
+}
+
+:dir(rtl) .separator > svg {
+  scale: -1 1;
+}
+
+.link {
+  composes: focusRing from '../../styles/focus-ring.module.css';
+  overflow: hidden;
+  color: var(--color-text-muted);
+  text-decoration-line: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast) var(--easing-standard);
+}
+
+.link:is(a[href]):hover {
+  color: var(--color-text);
+  text-decoration-line: underline;
+  text-underline-offset: 0.2em;
+}
+
+.link[aria-current='page'] {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+@media (pointer: coarse) {
+  .link {
+    display: inline-block;
+    line-height: var(--size-touch-target);
+  }
+}

@@ -1,0 +1,93 @@
+.root {
+  --drawer-size: var(--size-overlay-sm);
+  --drawer-from: translate(100%, 0);
+}
+
+.panel {
+  animation: drawer-in var(--duration-slow) var(--easing-enter);
+}
+
+.start {
+  justify-content: flex-start;
+  --drawer-from: translate(-100%, 0);
+}
+
+.end {
+  justify-content: flex-end;
+}
+
+.top {
+  flex-direction: column;
+  justify-content: flex-start;
+  --drawer-from: translate(0, -100%);
+}
+
+.bottom {
+  flex-direction: column;
+  justify-content: flex-end;
+  --drawer-from: translate(0, 100%);
+}
+
+:dir(rtl) .start {
+  --drawer-from: translate(100%, 0);
+}
+
+:dir(rtl) .end {
+  --drawer-from: translate(-100%, 0);
+}
+
+:is(.start, .end) .panel {
+  width: min(var(--drawer-size), 100%);
+  height: 100%;
+}
+
+:is(.top, .bottom) .panel {
+  width: 100%;
+  height: min(var(--drawer-size), 100%);
+}
+
+.start .panel {
+  border-start-end-radius: var(--radius-xl);
+  border-end-end-radius: var(--radius-xl);
+}
+
+.end .panel {
+  border-start-start-radius: var(--radius-xl);
+  border-end-start-radius: var(--radius-xl);
+}
+
+.top .panel {
+  border-end-start-radius: var(--radius-xl);
+  border-end-end-radius: var(--radius-xl);
+}
+
+.bottom .panel {
+  border-start-start-radius: var(--radius-xl);
+  border-start-end-radius: var(--radius-xl);
+}
+
+.sm {
+  --drawer-size: var(--size-overlay-sm);
+}
+
+.md {
+  --drawer-size: var(--size-overlay-md);
+}
+
+.lg {
+  --drawer-size: var(--size-overlay-lg);
+}
+
+.full {
+  --drawer-size: 100%;
+}
+
+.full.panel {
+  border-radius: 0;
+}
+
+@keyframes drawer-in {
+  from {
+    transform: var(--drawer-from);
+  }
+}

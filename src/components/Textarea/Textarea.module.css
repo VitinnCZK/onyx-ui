@@ -1,0 +1,24 @@
+.textarea {
+  --textarea-rows: 3;
+
+  display: block;
+  padding-block: var(--space-2);
+  line-height: var(--line-height-normal);
+}
+
+.none {
+  resize: none;
+}
+
+.vertical {
+  resize: vertical;
+}
+
+.both {
+  resize: both;
+}
+
+.autoResize {
+  field-sizing: content;
+  min-height: calc(var(--textarea-rows) * 1lh + var(--space-2) * 2);
+}

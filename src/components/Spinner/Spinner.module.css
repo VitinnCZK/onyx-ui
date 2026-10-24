@@ -1,0 +1,64 @@
+.spinner {
+  display: inline-flex;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  animation: spin calc(var(--duration-slower) * 1.5) var(--easing-linear) infinite;
+}
+
+.track {
+  opacity: 0.25;
+}
+
+.arc {
+  stroke-linecap: round;
+}
+
+.inherit {
+  width: 1em;
+  height: 1em;
+}
+
+.xs {
+  width: var(--size-icon-xs);
+  height: var(--size-icon-xs);
+}
+
+.sm {
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
+}
+
+.md {
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+}
+
+.lg {
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+}
+
+.xl {
+  width: var(--size-icon-xl);
+  height: var(--size-icon-xl);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    animation: none;
+  }
+}

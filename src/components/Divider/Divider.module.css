@@ -1,0 +1,41 @@
+.divider {
+  flex-shrink: 0;
+  margin: 0;
+  background-color: var(--color-border);
+  border: 0;
+}
+
+.horizontal {
+  align-self: stretch;
+  height: var(--border-width-thin);
+}
+
+.vertical {
+  align-self: stretch;
+  width: var(--border-width-thin);
+  min-height: 1em;
+}
+
+.horizontal.sm {
+  margin-block: var(--space-2);
+}
+
+.horizontal.md {
+  margin-block: var(--space-4);
+}
+
+.horizontal.lg {
+  margin-block: var(--space-8);
+}
+
+.vertical.sm {
+  margin-inline: var(--space-2);
+}
+
+.vertical.md {
+  margin-inline: var(--space-4);
+}
+
+.vertical.lg {
+  margin-inline: var(--space-8);
+}
