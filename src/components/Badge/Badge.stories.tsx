@@ -9,6 +9,28 @@ const variants: BadgeVariant[] = ['subtle', 'solid', 'outline'];
 const meta = {
   title: 'Primitives/Badge',
   component: Badge,
+  parameters: {
+    docs: {
+      description: {
+        component: `Short status or category label.
+
+**When to use**
+
+- Statuses (Active, Failed), counts and categories next to the content they describe.
+
+**When not to use**
+
+- Clickable filters or tags: use \`Button\`.
+- Longer messages: use \`Alert\`.
+
+**Accessibility**
+
+- Not interactive: put it next to a control, not inside one.
+- The text carries the meaning; the color only reinforces it.
+- A bare number needs context for screen readers, e.g. \`<VisuallyHidden>unread messages</VisuallyHidden>\`.`,
+      },
+    },
+  },
   args: { children: 'Badge' },
   argTypes: {
     intent: { control: 'select', options: intents },

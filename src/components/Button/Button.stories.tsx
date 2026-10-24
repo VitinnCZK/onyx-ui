@@ -9,6 +9,30 @@ const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', '
 const meta = {
   title: 'Primitives/Button',
   component: Button,
+  parameters: {
+    docs: {
+      description: {
+        component: `Runs an action: submits a form, opens a dialog, saves a change.
+
+**When to use**
+
+- One \`primary\` button per view for the main action; \`secondary\`, \`outline\` or \`ghost\` for the others.
+- \`danger\` for destructive actions, usually confirmed in a \`Modal\`.
+
+**When not to use**
+
+- Going to another page or URL: use \`Link\`.
+- Only an icon, no text: use \`IconButton\`.
+- A setting that turns on and off: use \`Switch\`.
+
+**Accessibility**
+
+- Renders \`<button type="button">\`; pass \`type="submit"\` inside forms.
+- \`loading\` keeps the button focusable with \`aria-disabled\` and adds \`loadingLabel\` to its name.
+- Prefer an enabled button that explains what is missing over \`disabled\`, which removes it from the tab order.`,
+      },
+    },
+  },
   args: { children: 'Button', onClick: fn() },
   argTypes: {
     variant: { control: 'inline-radio', options: variants },

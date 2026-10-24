@@ -9,6 +9,29 @@ const intents: AlertIntent[] = ['info', 'success', 'warning', 'danger'];
 const meta = {
   title: 'Feedback/Alert',
   component: Alert,
+  parameters: {
+    docs: {
+      description: {
+        component: `Highlighted message about the page or a task.
+
+**When to use**
+
+- Messages tied to a page or section that stay visible: an error summary, a maintenance notice, a warning before an action.
+
+**When not to use**
+
+- Short confirmation of something the user just did: use \`Toast\`.
+- A decision the user must make before going on: use \`Modal\` with \`role="alertdialog"\`.
+- An error on a single field: use the \`error\` of \`FormField\`.
+
+**Accessibility**
+
+- \`warning\` and \`danger\` use \`role="alert"\` and are announced right away; \`info\` and \`success\` use \`role="status"\`.
+- Live regions announce changes, so render the alert when the event happens instead of toggling its text.
+- The icon and the title carry the intent too, so it never depends on color alone.`,
+      },
+    },
+  },
   args: {
     title: 'Scheduled maintenance',
     children: 'The dashboard will be read-only on Sunday from 2 to 4 AM UTC.',

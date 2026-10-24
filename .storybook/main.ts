@@ -7,6 +7,16 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  typescript: {
+    // The default `react-docgen` can't read the polymorphic components' props.
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      // Inherited DOM attributes and `ref` would bury each component's own props.
+      propFilter: (prop) => prop.name !== 'ref' && !prop.parent?.fileName.includes('node_modules'),
+    },
+  },
   async viteFinal(viteConfig) {
     // Declaration files are only needed for the library build.
     viteConfig.plugins = viteConfig.plugins?.flat().filter((plugin) => {

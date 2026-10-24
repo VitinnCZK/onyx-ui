@@ -6,6 +6,26 @@ import { Divider } from '.';
 const meta = {
   title: 'Primitives/Divider',
   component: Divider,
+  parameters: {
+    docs: {
+      description: {
+        component: `Line that separates content.
+
+**When to use**
+
+- Separating groups of content or toolbar items when spacing alone is not enough.
+
+**When not to use**
+
+- Between menu items: use \`DropdownMenuSeparator\`.
+- Only to add space: use the spacing tokens.
+
+**Accessibility**
+
+- Announced as a \`separator\` with its orientation. Set \`decorative\` when it only adds visual rhythm, so it is hidden.`,
+      },
+    },
+  },
   argTypes: {
     orientation: { control: 'inline-radio', options: ['horizontal', 'vertical'] },
     spacing: { control: 'inline-radio', options: ['none', 'sm', 'md', 'lg'] },

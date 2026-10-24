@@ -1,6 +1,7 @@
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Decorator, Preview } from '@storybook/react-vite';
 import '../src/styles/index.css';
+import { DocsContainer } from './DocsContainer';
 
 const withToolbarTheme = withThemeByDataAttribute({
   themes: {
@@ -16,7 +17,11 @@ const withTheme: Decorator = (Story, context) =>
   context.parameters.themes?.disable ? Story() : withToolbarTheme(Story, context);
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
+    docs: {
+      container: DocsContainer,
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

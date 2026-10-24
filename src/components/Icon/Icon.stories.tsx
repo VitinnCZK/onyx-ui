@@ -6,6 +6,27 @@ import { Icon } from '.';
 const meta = {
   title: 'Primitives/Icon',
   component: Icon,
+  parameters: {
+    docs: {
+      description: {
+        component: `A 24×24 stroke icon, built in or made from your own shapes.
+
+**When to use**
+
+- Reinforcing a label or a status shown as text.
+
+**When not to use**
+
+- As the only content of a button: use \`IconButton\`, which names it.
+- Pictures of people: use \`Avatar\`.
+
+**Accessibility**
+
+- Decorative by default and hidden from assistive technology.
+- Pass \`label\` when the icon alone carries meaning; it then needs 3:1 contrast with its background.`,
+      },
+    },
+  },
   args: { size: 'lg' },
   argTypes: {
     size: { control: 'inline-radio', options: ['inherit', 'xs', 'sm', 'md', 'lg', 'xl'] },

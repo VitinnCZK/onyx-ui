@@ -6,6 +6,27 @@ import { Switch } from '.';
 const meta = {
   title: 'Forms/Switch',
   component: Switch,
+  parameters: {
+    docs: {
+      description: {
+        component: `On/off toggle for a setting that applies right away.
+
+**When to use**
+
+- Settings that take effect immediately: notifications, dark mode, auto-save.
+
+**When not to use**
+
+- Choices applied when a form is submitted: use \`Checkbox\`.
+- More than two states: use \`RadioGroup\`.
+
+**Accessibility**
+
+- A native checkbox with \`role="switch"\`: Space toggles it.
+- Label it with \`children\` or \`aria-label\`, and keep the label the same in both states.`,
+      },
+    },
+  },
   args: { children: 'Email notifications', onCheckedChange: fn() },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

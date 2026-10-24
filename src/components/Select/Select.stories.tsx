@@ -16,6 +16,28 @@ const fruits = (
 const meta = {
   title: 'Forms/Select',
   component: Select,
+  parameters: {
+    docs: {
+      description: {
+        component: `Native select, styled to match the other fields.
+
+**When to use**
+
+- One choice from a long, known list: countries, sort order.
+
+**When not to use**
+
+- A few options: use \`RadioGroup\`, which shows them all.
+- Actions: use \`DropdownMenu\`.
+- Free text or search: use \`Input\`.
+
+**Accessibility**
+
+- Built on \`<select>\`, so keyboard, screen reader and mobile pickers come from the platform.
+- Label it with \`FormField\` or \`aria-label\`.`,
+      },
+    },
+  },
   args: { 'aria-label': 'Fruit', placeholder: 'Pick a fruit', children: fruits },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

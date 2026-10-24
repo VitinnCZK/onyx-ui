@@ -5,6 +5,28 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '.';
 const meta = {
   title: 'Navigation/Breadcrumb',
   component: Breadcrumb,
+  parameters: {
+    docs: {
+      description: {
+        component: `Trail of links from the home page to the current page.
+
+**When to use**
+
+- Hierarchies of three or more levels where people need to move up.
+
+**When not to use**
+
+- Flat sites, or as the main navigation.
+- Steps of a linear process: use \`Progress\` or a list of steps.
+
+**Accessibility**
+
+- Renders a \`nav\` landmark named "Breadcrumb"; change it with \`aria-label\`.
+- Mark the last link \`current\` so it gets \`aria-current="page"\`.
+- Separators are hidden from assistive technology.`,
+      },
+    },
+  },
   render: (args) => (
     <Breadcrumb {...args}>
       <BreadcrumbItem>

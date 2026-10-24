@@ -12,6 +12,28 @@ const faq = [
 const meta = {
   title: 'Navigation/Accordion',
   component: Accordion,
+  parameters: {
+    docs: {
+      description: {
+        component: `Stack of sections whose content expands and collapses.
+
+**When to use**
+
+- Long, scannable content where readers only need some sections: FAQs, groups of settings, filters.
+
+**When not to use**
+
+- To switch between alternative views of the same area: use \`Tabs\`.
+- For content most readers need: keep it visible instead of hiding it.
+
+**Accessibility**
+
+- Each trigger is a button inside a heading. Set \`headingLevel\` to fit the outline of the page.
+- Up/Down arrows, Home and End move between triggers; Enter or Space toggles a section.
+- An open section is a region labelled by its trigger.`,
+      },
+    },
+  },
   args: { defaultValue: ['shipping'] },
   argTypes: {
     type: { control: 'inline-radio', options: ['single', 'multiple'] },

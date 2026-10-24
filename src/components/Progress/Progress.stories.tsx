@@ -6,6 +6,28 @@ import { Progress, type ProgressIntent } from '.';
 const meta = {
   title: 'Feedback/Progress',
   component: Progress,
+  parameters: {
+    docs: {
+      description: {
+        component: `Shows how much of a task is done, or that it is in progress when the amount is unknown.
+
+**When to use**
+
+- Tasks with measurable progress, such as uploads or multi-step processes.
+
+**When not to use**
+
+- A short wait in one spot: use \`Spinner\`.
+- Content that is loading: use \`Skeleton\`.
+
+**Accessibility**
+
+- \`role="progressbar"\` with its range and \`aria-valuetext\` (see \`formatValue\`).
+- Name it with \`label\` or \`aria-label\`.
+- Value changes are not announced: announce the outcome in a live region or with a \`Toast\`.`,
+      },
+    },
+  },
   args: { label: 'Uploading files', value: 45, showValue: true },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

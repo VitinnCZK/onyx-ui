@@ -88,6 +88,28 @@ const columns: TableColumn<Invoice>[] = [
 const meta = {
   title: 'Data display/Table',
   component: Table,
+  parameters: {
+    docs: {
+      description: {
+        component: `Data table with sortable columns, an empty state and a scroll region for narrow screens.
+
+**When to use**
+
+- Structured data compared across rows and columns.
+
+**When not to use**
+
+- Page layout.
+- Items with only a couple of attributes: use a list or \`Card\`s.
+
+**Accessibility**
+
+- \`caption\` names the table and its scroll region; \`hideCaption\` keeps it for assistive technology only.
+- Sortable headers are buttons, and the sorted column has \`aria-sort\`.
+- The scroll region becomes focusable when it overflows, so keyboard users can scroll it. \`loading\` sets \`aria-busy\`.`,
+      },
+    },
+  },
   args: {
     caption: 'Recent invoices',
     columns: columns as TableColumn<unknown>[],

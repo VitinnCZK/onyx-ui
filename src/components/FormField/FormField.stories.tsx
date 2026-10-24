@@ -12,6 +12,27 @@ import { FormField } from '.';
 const meta = {
   title: 'Forms/FormField',
   component: FormField,
+  parameters: {
+    docs: {
+      description: {
+        component: `Wraps a form control with its label, helper text and error message.
+
+**When to use**
+
+- Any \`Input\`, \`Textarea\`, \`Select\` or \`Slider\` that needs a visible label, a hint or an error.
+
+**When not to use**
+
+- \`Checkbox\`, \`Switch\` and \`RadioGroup\`: they have their own label, description and error.
+
+**Accessibility**
+
+- Wires up \`htmlFor\`, \`aria-describedby\` (helper and error) and \`aria-invalid\` on the control.
+- Write errors that say how to fix the problem, and move focus to the first invalid field on submit.
+- \`hideLabel\` keeps the label for assistive technology only; use it when the context makes the field obvious.`,
+      },
+    },
+  },
   args: {
     label: 'Email',
     helperText: 'We will only use it to send receipts.',

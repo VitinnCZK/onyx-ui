@@ -22,7 +22,29 @@ const meta = {
       ] satisfies ToastPlacement[],
     },
   },
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: `Shows the toasts requested with \`useToast\`, one queue per app.
+
+**When to use**
+
+- Brief, non-blocking feedback about something the user just did: "Saved", "Message sent", with an optional undo.
+
+**When not to use**
+
+- Errors or information people must act on: use \`Alert\` or \`Modal\`.
+- State that should stay on the page: use \`Alert\`.
+
+**Accessibility**
+
+- New toasts are announced by a live region, and timers pause while the pointer or focus is on them.
+- F8 (\`hotkey\`) moves focus to the newest toast so keyboard users can reach its buttons.
+- Never make a toast the only way to reach an action; give toasts with actions a longer \`duration\` or \`null\`.`,
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <main className={styles.page}>

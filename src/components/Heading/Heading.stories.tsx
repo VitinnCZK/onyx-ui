@@ -5,6 +5,25 @@ import { Heading } from '.';
 const meta = {
   title: 'Primitives/Heading',
   component: Heading,
+  parameters: {
+    docs: {
+      description: {
+        component: `Title of a page or section.
+
+**When to use**
+
+- Titles that build the outline of the page.
+
+**When not to use**
+
+- Big or bold text that does not start a section: use \`Text\` with \`size\` and \`weight\`.
+
+**Accessibility**
+
+- Pick \`level\` from the structure (one \`h1\` per page, no skipped levels), then \`size\` for the look.`,
+      },
+    },
+  },
   args: { children: 'Design systems scale', level: 2 },
   argTypes: {
     level: { control: 'inline-radio', options: [1, 2, 3, 4, 5, 6] },

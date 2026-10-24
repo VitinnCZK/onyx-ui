@@ -6,6 +6,25 @@ import { Portal } from '.';
 const meta = {
   title: 'Foundations/Portal',
   component: Portal,
+  parameters: {
+    docs: {
+      description: {
+        component: `Renders its children into another node, \`document.body\` by default.
+
+**When to use**
+
+- Floating layers that must escape \`overflow\` and stacking contexts. The library overlays already use it.
+
+**When not to use**
+
+- Regular page content.
+
+**Accessibility**
+
+- The content moves in the DOM, so manage focus yourself: move it into the portalled content and back, as \`Modal\` and \`Popover\` do.`,
+      },
+    },
+  },
 } satisfies Meta<typeof Portal>;
 
 export default meta;

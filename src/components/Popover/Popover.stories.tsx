@@ -10,6 +10,28 @@ import { Popover } from '.';
 const meta = {
   title: 'Overlays/Popover',
   component: Popover,
+  parameters: {
+    docs: {
+      description: {
+        component: `Non-modal dialog anchored to a trigger.
+
+**When to use**
+
+- Interactive content next to a control: small forms, quick settings, details with links.
+
+**When not to use**
+
+- A short description on hover: use \`Tooltip\`.
+- A list of actions: use \`DropdownMenu\`.
+- Tasks that must block the page: use \`Modal\`.
+
+**Accessibility**
+
+- Named by \`title\` or \`aria-label\`.
+- Focus moves inside on open; Escape, a click outside or tabbing out closes it, and Escape returns focus to the trigger.`,
+      },
+    },
+  },
   args: {
     title: 'Notification settings',
     trigger: <Button variant="outline">Notifications</Button>,
@@ -45,6 +67,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Open: Story = {
+  // Left out of the docs page, where the open overlay would take over the page.
+  tags: ['!autodocs'],
   args: { defaultOpen: true },
 };
 

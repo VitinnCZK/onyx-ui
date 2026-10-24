@@ -11,6 +11,26 @@ const photo =
 const meta = {
   title: 'Primitives/Avatar',
   component: Avatar,
+  parameters: {
+    docs: {
+      description: {
+        component: `Picture of a person or entity, with their initials as a fallback.
+
+**When to use**
+
+- Identifying people, teams or organizations in lists, comments and headers.
+
+**When not to use**
+
+- Icons or illustrations: use \`Icon\` or an \`<img>\`.
+
+**Accessibility**
+
+- The image uses \`alt\`, which defaults to \`name\`. The initials fallback is an image named \`name\`.
+- Next to the visible name, the avatar repeats it for screen readers: consider hiding it with \`aria-hidden\`.`,
+      },
+    },
+  },
   args: { name: 'Ada Lovelace' },
   argTypes: {
     size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg', 'xl'] },

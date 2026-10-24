@@ -9,6 +9,10 @@ Every visual decision lives in design tokens exposed as CSS custom properties. T
 - **Base tokens** on `:root`: the color palette (`--color-primary-600`…), typography, spacing, radius, shadows, motion, z-index and breakpoints. They don't change between themes.
 - **Semantic colors** (`--color-bg`, `--color-text`, `--color-primary`, `--color-focus`…), which point at the palette. Components only use these, so **a theme is a block that redefines the semantic layer**.
 
+See every token, in both themes, in [Foundations › Tokens](?path=/docs/foundations-tokens--docs).
+
+## Light, dark and system
+
 The library ships two themes, both meeting WCAG AA contrast (4.5:1 for text, 3:1 for UI), which a unit test enforces:
 
 ```css
@@ -28,9 +32,7 @@ The library ships two themes, both meeting WCAG AA contrast (4.5:1 for text, 3:1
 }
 ```
 
-## ThemeProvider
-
-`ThemeProvider` sets `data-theme` on `<html>` and keeps it up to date.
+`ThemeProvider` picks one of them by setting `data-theme` on `<html>`:
 
 ```tsx
 import '@vitinnczk/ui/styles.css';
@@ -46,29 +48,89 @@ import { ThemeProvider } from '@vitinnczk/ui';
 | `defaultTheme` | `'light' \| 'dark' \| 'system' \| string` | `'system'`    | Theme used until the user picks one.                |
 | `storageKey`   | `string`                                  | `'vui-theme'` | `localStorage` key where the user's choice is kept. |
 
+- **`light`** and **`dark`** apply that theme.
 - **`system`** follows `prefers-color-scheme` and switches live when the operating system changes.
-- **Persistence**: `setTheme` saves the choice in `localStorage` (`system` included) and every tab follows it. If storage is blocked, the choice still applies for the rest of the visit.
-- **SSR**: the server and the hydration pass render with `defaultTheme`; the stored choice is applied right after, without hydration mismatches.
+- Without a `ThemeProvider` (or before React runs), the light theme on `:root` applies.
 
-## useTheme
+Try the three modes in [Theming › ThemeProvider](?path=/docs/theming-themeprovider--docs).
+
+## Switching themes with useTheme
 
 ```tsx
-import { useTheme } from '@vitinnczk/ui';
+import { useTheme, type Theme } from '@vitinnczk/ui';
 
-function ThemeToggle() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+const modes: Theme[] = ['light', 'dark', 'system'];
+
+function ThemeSelect() {
+  const { theme, setTheme } = useTheme();
 
   return (
-    <button type="button" onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}>
-      Use {resolvedTheme === 'dark' ? 'light' : 'dark'} theme
-    </button>
+    <label>
+      Theme
+      <select value={theme} onChange={(event) => setTheme(event.target.value)}>
+        {modes.map((mode) => (
+          <option key={mode}>{mode}</option>
+        ))}
+      </select>
+    </label>
   );
 }
 ```
 
 - `theme`: the choice, `system` included.
-- `resolvedTheme`: what is applied, with `system` resolved to `light` or `dark`.
+- `resolvedTheme`: what is applied, with `system` resolved to `light` or `dark`. Use it to pick icons or chart colors.
 - `setTheme(theme)`: switches and persists.
+
+## Persisting the choice
+
+- `setTheme` saves the choice in `localStorage` under `storageKey`, `system` included, so the next visit starts with it.
+- Every open tab of the app follows a change made in another tab.
+- If storage is blocked (private mode, disabled cookies), the choice still applies for the rest of the visit.
+- To forget the choice, remove the key with `localStorage.removeItem('vui-theme')`; the next visit starts from `defaultTheme`.
+
+### Server rendering and the first paint
+
+The server and the hydration pass render with `defaultTheme`; the stored choice is applied right after, without hydration mismatches. The page is painted before React runs, though, so to avoid a flash of the wrong theme, add this script to `<head>`, using the same `storageKey` and `defaultTheme` as the `ThemeProvider`:
+
+```html
+<script>
+  try {
+    var theme = localStorage.getItem('vui-theme') || 'system';
+    if (theme === 'system') {
+      theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (error) {}
+</script>
+```
+
+## Reduced motion
+
+Under `prefers-reduced-motion: reduce`, every `--duration-*` token becomes `0.01ms`:
+
+- overlays, accordions and other transitions appear and disappear without moving;
+- looping animations, like the `Spinner` rotation and the `Skeleton` shimmer, stop;
+- `transitionend` and `animationend` still fire, because the value is not `0ms`, so code that waits for them keeps working.
+
+Use the tokens for every transition and animation in your own CSS so they follow this setting too:
+
+```css
+.panel {
+  transition: opacity var(--duration-normal) var(--easing-enter);
+}
+```
+
+For looping animations, which a near-zero duration would turn into flicker, stop them explicitly:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}
+```
+
+To check it, emulate the preference in the browser: in Chrome DevTools, open **Rendering** and set **Emulate CSS media feature prefers-reduced-motion** to `reduce`. The same panel emulates `prefers-color-scheme` for the `system` mode. [Foundations › Tokens › Motion](?path=/story/foundations-tokens--motion) shows the durations and easings in action.
 
 ## Creating a custom theme
 
@@ -93,11 +155,13 @@ The semantic colors point at the palette, so redefining a palette scale under yo
 }
 ```
 
+Load this CSS after `@vitinnczk/ui/styles.css` and select the theme by name, as the default or through `setTheme('brand')`:
+
 ```tsx
 <ThemeProvider defaultTheme="brand">...</ThemeProvider>
 ```
 
-A custom theme only overrides what it declares. Everything else comes from the light theme on `:root`.
+A custom theme only overrides what it declares. Everything else comes from the light theme on `:root`. `resolvedTheme` returns the custom name as is.
 
 ### Start from the dark theme or change the semantic layer
 
@@ -116,7 +180,11 @@ To build a dark variant, or to change what a role points at, redefine the semant
 }
 ```
 
-Check the new combinations for contrast: text needs 4.5:1 against every background it sits on, and control borders, focus rings and fills need 3:1.
+The full list of semantic tokens, with their light and dark values, is in [Foundations › Tokens › Semantic Colors](?path=/story/foundations-tokens--semantic-colors).
+
+### Check the contrast
+
+Check every new combination: text needs 4.5:1 against every background it sits on (`--color-bg`, `--color-surface`, the `-subtle` backgrounds), and control borders, focus rings and fills need 3:1. Then open the stories with the theme applied and run the **Accessibility** panel.
 
 ### Theming part of the page
 
@@ -127,29 +195,3 @@ Theme blocks redefine the semantic layer on the element that carries the attribu
 ```
 
 This works for `light`, `dark` and any theme that declares semantic colors. A theme that only overrides the palette, like `brand` above, needs to be on `<html>`: the semantic colors are resolved where they are declared, and `:root` is the only place the light theme declares them.
-
-## Avoiding a flash of the wrong theme
-
-With server rendering, the page is painted before React runs. To apply the stored theme before the first paint, add this script to `<head>`, using the same `storageKey` and `defaultTheme` as the `ThemeProvider`:
-
-```html
-<script>
-  try {
-    var theme = localStorage.getItem('vui-theme') || 'system';
-    if (theme === 'system') {
-      theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-    document.documentElement.setAttribute('data-theme', theme);
-  } catch (error) {}
-</script>
-```
-
-## Reduced motion
-
-Under `prefers-reduced-motion: reduce`, every `--duration-*` token becomes `0.01ms`, so anything animated with the motion tokens stops moving. The value is not `0ms`, so `transitionend` and `animationend` still fire. Use the tokens for every transition and animation so they follow this setting:
-
-```css
-.panel {
-  transition: opacity var(--duration-normal) var(--easing-enter);
-}
-```

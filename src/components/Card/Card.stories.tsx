@@ -10,6 +10,27 @@ import { Card, CardBody, CardFooter, CardHeader, type CardOwnProps } from '.';
 const meta = {
   title: 'Data display/Card',
   component: Card,
+  parameters: {
+    docs: {
+      description: {
+        component: `Surface that groups related content, laid out with \`CardHeader\`, \`CardBody\` and \`CardFooter\`.
+
+**When to use**
+
+- Summaries of an entity (a plan, a project, a product) in a grid or list, or a group of related settings.
+
+**When not to use**
+
+- Only to add a border or spacing to a page section.
+- Cards inside cards.
+
+**Accessibility**
+
+- A \`div\` by default. Use \`as="article"\` or \`as="section"\` with \`aria-labelledby\` pointing at its heading when it stands on its own.
+- Avoid making the whole card clickable when it has other actions inside: put a \`Link\` in the heading.`,
+      },
+    },
+  },
   args: { variant: 'outline', padding: 'md' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['outline', 'elevated', 'filled'] },

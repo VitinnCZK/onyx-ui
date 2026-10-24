@@ -7,6 +7,29 @@ import { Input } from '.';
 const meta = {
   title: 'Forms/Input',
   component: Input,
+  parameters: {
+    docs: {
+      description: {
+        component: `Single-line text field.
+
+**When to use**
+
+- Short free text: names, emails, search terms, numbers.
+
+**When not to use**
+
+- Several lines: use \`Textarea\`.
+- Choosing from a known list: use \`Select\` or \`RadioGroup\`.
+- An approximate value in a range: use \`Slider\`.
+
+**Accessibility**
+
+- Always label it: wrap it in \`FormField\` or use \`aria-label\`. A placeholder is not a label.
+- Use the right \`type\`, \`inputMode\` and \`autoComplete\` so browsers and keyboards help.
+- \`invalid\` sets \`aria-invalid\`.`,
+      },
+    },
+  },
   args: { 'aria-label': 'Full name', placeholder: 'Ada Lovelace' },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

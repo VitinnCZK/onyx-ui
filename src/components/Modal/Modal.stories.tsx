@@ -10,6 +10,29 @@ import { Modal, type ModalSize } from '.';
 const meta = {
   title: 'Overlays/Modal',
   component: Modal,
+  parameters: {
+    docs: {
+      description: {
+        component: `Dialog centered over the page.
+
+**When to use**
+
+- Focused tasks or decisions that block the page until done: confirming a destructive action, short forms.
+
+**When not to use**
+
+- Information that does not need to block: use \`Popover\`, \`Alert\` or \`Toast\`.
+- Content that should keep the page in view: use \`Drawer\`.
+- Long or multi-step flows: use a page.
+
+**Accessibility**
+
+- \`title\` names the dialog and \`description\` describes it.
+- Focus moves inside (to \`initialFocus\` or the first focusable element) and is trapped; the page stops scrolling.
+- Escape and the close button close it, and focus returns to the trigger. Use \`role="alertdialog"\` for confirmations.`,
+      },
+    },
+  },
   args: {
     title: 'Invite a teammate',
     description: 'They will get an email with a link to join this workspace.',
@@ -42,6 +65,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Open: Story = {
+  // Left out of the docs page, where the open overlay would take over the page.
+  tags: ['!autodocs'],
   args: { defaultOpen: true },
 };
 

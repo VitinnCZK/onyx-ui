@@ -8,6 +8,27 @@ const sample = 'The quick brown fox jumps over the lazy dog.';
 const meta = {
   title: 'Primitives/Text',
   component: Text,
+  parameters: {
+    docs: {
+      description: {
+        component: `Body text. Renders a paragraph by default; use \`as\` for inline text or other elements.
+
+**When to use**
+
+- Body copy, captions and helper text on the type scale.
+
+**When not to use**
+
+- Section titles: use \`Heading\`.
+- Links: use \`Link\`.
+
+**Accessibility**
+
+- Every \`tone\` meets WCAG AA on the theme backgrounds, but meaning should not depend on color alone.
+- \`truncate\` hides part of the text: make the full text available elsewhere.`,
+      },
+    },
+  },
   args: { children: sample },
   argTypes: {
     size: { control: 'inline-radio', options: ['inherit', 'xs', 'sm', 'md', 'lg', 'xl'] },

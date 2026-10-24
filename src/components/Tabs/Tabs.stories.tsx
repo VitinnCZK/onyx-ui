@@ -5,6 +5,29 @@ import { Tab, TabList, TabPanel, Tabs } from '.';
 const meta = {
   title: 'Navigation/Tabs',
   component: Tabs,
+  parameters: {
+    docs: {
+      description: {
+        component: `Switches between panels of content, one visible at a time.
+
+**When to use**
+
+- Related views of the same context, at the same level: overview, activity, settings.
+
+**When not to use**
+
+- Steps of a process, or content that should be read in order.
+- Moving between pages: use links.
+- Content that people need to compare side by side.
+
+**Accessibility**
+
+- Follows the ARIA tabs pattern: arrow keys and Home/End move between tabs, Tab moves into the panel.
+- Name the \`TabList\` with \`aria-label\` or \`aria-labelledby\`.
+- Use \`activationMode="manual"\` when showing a panel is slow, so Enter or Space has to confirm.`,
+      },
+    },
+  },
   args: { defaultValue: 'overview' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['line', 'solid'] },

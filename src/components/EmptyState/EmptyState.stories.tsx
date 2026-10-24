@@ -7,6 +7,27 @@ import { EmptyState } from '.';
 const meta = {
   title: 'Data display/EmptyState',
   component: EmptyState,
+  parameters: {
+    docs: {
+      description: {
+        component: `Placeholder for a list, table or page that has no content yet or no results.
+
+**When to use**
+
+- Empty lists, tables and search results, and first-run screens with a clear next step in \`action\`.
+
+**When not to use**
+
+- Errors: use \`Alert\`.
+- Content that is still loading: use \`Skeleton\` or \`Spinner\`.
+
+**Accessibility**
+
+- The title is a heading; set \`headingLevel\` to fit the outline. The icon is decorative.
+- It is not announced when it appears: after a search or filter, announce the result count in a live region.`,
+      },
+    },
+  },
   args: {
     icon: <InfoIcon />,
     title: 'No projects yet',

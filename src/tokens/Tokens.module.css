@@ -59,12 +59,13 @@
 
 .row {
   display: grid;
-  grid-template-columns: calc(var(--space-24) * 2) 1fr;
+  grid-template-columns: calc(var(--space-24) * 2) minmax(0, 1fr);
   gap: var(--space-4);
   align-items: center;
 }
 
 .bar {
+  max-width: 100%;
   height: var(--space-4);
   background: var(--color-primary);
   border-radius: var(--radius-sm);
@@ -79,4 +80,89 @@
 .sample {
   margin: 0;
   overflow-wrap: anywhere;
+}
+
+.description {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.token {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  overflow-wrap: anywhere;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  text-align: start;
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-3);
+  border-block-end: var(--border-width-thin) solid var(--color-border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.themed {
+  width: 40%;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.themed .meta {
+  overflow-wrap: anywhere;
+}
+
+.line {
+  border-block-start: solid var(--color-border-strong);
+}
+
+.track {
+  position: relative;
+  height: var(--space-4);
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-full);
+}
+
+.dot {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: var(--space-4);
+  height: var(--space-4);
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition-property: inset-inline-start;
+}
+
+.dot[data-moved] {
+  inset-inline-start: calc(100% - var(--space-4));
+}
+
+.stack {
+  position: relative;
+  isolation: isolate;
+  height: calc(var(--space-8) * 4 + var(--space-24));
+}
+
+.layer {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+  align-items: baseline;
+  align-content: start;
+  width: min(var(--size-menu) * 1.5, 100% - var(--space-8) * 4);
+  height: var(--space-24);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-raised);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }

@@ -5,6 +5,27 @@ import { Skeleton } from '.';
 const meta = {
   title: 'Feedback/Skeleton',
   component: Skeleton,
+  parameters: {
+    docs: {
+      description: {
+        component: `Placeholder shaped like content that is still loading.
+
+**When to use**
+
+- The first load of a page or section, to keep the layout stable.
+
+**When not to use**
+
+- Actions in progress, such as saving: use \`Spinner\` or \`Button\` \`loading\`.
+- Long tasks with known progress: use \`Progress\`.
+
+**Accessibility**
+
+- Hidden from assistive technology: mark the loading region with \`aria-busy\` and announce the outcome elsewhere.
+- The shimmer stops under \`prefers-reduced-motion\`.`,
+      },
+    },
+  },
   argTypes: {
     variant: { control: 'inline-radio', options: ['text', 'rect', 'circle'] },
   },

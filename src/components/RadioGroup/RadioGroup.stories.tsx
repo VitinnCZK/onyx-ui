@@ -5,6 +5,28 @@ import { Radio, RadioGroup } from '.';
 const meta = {
   title: 'Forms/RadioGroup',
   component: RadioGroup,
+  parameters: {
+    docs: {
+      description: {
+        component: `Set of radios where only one can be selected.
+
+**When to use**
+
+- One choice among a few options (up to about six) that people should compare.
+
+**When not to use**
+
+- Many options: use \`Select\`.
+- Several options can be chosen: use \`Checkbox\`.
+- An on/off setting that applies right away: use \`Switch\`.
+
+**Accessibility**
+
+- \`role="radiogroup"\` named by \`label\`; \`description\` and \`error\` are linked with \`aria-describedby\`.
+- Arrow keys move the selection and Tab moves past the group, as native radios do.`,
+      },
+    },
+  },
   args: {
     label: 'Delivery',
     defaultValue: 'standard',

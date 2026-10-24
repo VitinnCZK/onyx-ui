@@ -5,6 +5,26 @@ import { VisuallyHidden } from '.';
 const meta = {
   title: 'Foundations/VisuallyHidden',
   component: VisuallyHidden,
+  parameters: {
+    docs: {
+      description: {
+        component: `Content read by screen readers but not shown on screen.
+
+**When to use**
+
+- Extra context for icons, counts or repeated link text, such as the "invoice 42" in "Edit invoice 42".
+
+**When not to use**
+
+- Hiding content from everyone: use \`hidden\`.
+- Hiding content from assistive technology only: use \`aria-hidden\`.
+
+**Accessibility**
+
+- The content stays in the accessibility tree and the reading order. Do not use it to hide focusable elements.`,
+      },
+    },
+  },
   args: { children: 'Close dialog' },
 } satisfies Meta<typeof VisuallyHidden>;
 

@@ -5,6 +5,27 @@ import { Link } from '.';
 const meta = {
   title: 'Primitives/Link',
   component: Link,
+  parameters: {
+    docs: {
+      description: {
+        component: `Text link. Use \`as\` to render a router link while keeping the styles.
+
+**When to use**
+
+- Going to another page, a section of the page or an external resource.
+
+**When not to use**
+
+- Actions that do not navigate, such as submitting or opening a dialog: use \`Button\`.
+
+**Accessibility**
+
+- Write link text that makes sense out of context; avoid "click here".
+- \`external\` opens a new tab, adds a safe \`rel\` and announces \`externalLabel\`.
+- \`inherit\` relies on the underline, so keep it.`,
+      },
+    },
+  },
   args: { href: '#', children: 'Read the documentation' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['default', 'muted', 'inherit'] },

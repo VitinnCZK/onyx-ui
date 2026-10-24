@@ -10,6 +10,26 @@ const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', '
 const meta = {
   title: 'Primitives/IconButton',
   component: IconButton,
+  parameters: {
+    docs: {
+      description: {
+        component: `Square button that shows only an icon.
+
+**When to use**
+
+- Compact actions with a well-known icon: close, more options, toolbar actions.
+
+**When not to use**
+
+- Actions whose icon is not obvious: use \`Button\` with text, optionally with \`startIcon\`.
+
+**Accessibility**
+
+- \`label\` is required and becomes the accessible name; the icon is hidden.
+- Wrap it in a \`Tooltip\` with the same text so sighted users can read the label too.`,
+      },
+    },
+  },
   args: { label: 'More options', children: <MoreHorizontalIcon />, onClick: fn() },
   argTypes: {
     variant: { control: 'inline-radio', options: variants },

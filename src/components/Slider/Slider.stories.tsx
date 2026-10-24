@@ -6,6 +6,27 @@ import { Slider } from '.';
 const meta = {
   title: 'Forms/Slider',
   component: Slider,
+  parameters: {
+    docs: {
+      description: {
+        component: `Picks a number from a range.
+
+**When to use**
+
+- Approximate values where the position in the range matters: volume, brightness.
+
+**When not to use**
+
+- Exact values: use \`Input\` with \`type="number"\`.
+- A few named options: use \`RadioGroup\`.
+
+**Accessibility**
+
+- Built on the native range input: arrow keys, Page Up/Down and Home/End work.
+- Name it with \`FormField\` or \`aria-label\`, and use \`formatValue\` when the number needs a unit (\`aria-valuetext\`).`,
+      },
+    },
+  },
   args: { 'aria-label': 'Volume', defaultValue: 40, showValue: true, onValueChange: fn() },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

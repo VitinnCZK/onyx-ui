@@ -6,6 +6,29 @@ import { Checkbox } from '.';
 const meta = {
   title: 'Forms/Checkbox',
   component: Checkbox,
+  parameters: {
+    docs: {
+      description: {
+        component: `Box that is checked or unchecked, alone or as part of a list.
+
+**When to use**
+
+- Independent options that can be combined.
+- A single opt-in applied when the form is submitted, such as accepting the terms.
+
+**When not to use**
+
+- Only one option can be chosen: use \`RadioGroup\`.
+- A setting that applies right away: use \`Switch\`.
+
+**Accessibility**
+
+- Native \`<input type="checkbox">\`: Space toggles it.
+- \`children\` is the label; without it, name the checkbox with \`aria-label\`. \`description\` is linked with \`aria-describedby\`.
+- \`indeterminate\` is announced as mixed. Group related checkboxes in a \`fieldset\` with a \`legend\`.`,
+      },
+    },
+  },
   args: { children: 'Remember me' },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },

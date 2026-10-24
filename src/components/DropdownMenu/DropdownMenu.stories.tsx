@@ -11,6 +11,29 @@ const onSelect = fn();
 const meta = {
   title: 'Overlays/DropdownMenu',
   component: DropdownMenu,
+  parameters: {
+    docs: {
+      description: {
+        component: `Menu of actions opened by a button.
+
+**When to use**
+
+- Actions related to an element, such as row actions or a "More" menu.
+
+**When not to use**
+
+- Choosing a value in a form: use \`Select\` or \`RadioGroup\`.
+- Moving between pages: use links.
+- Forms or rich content: use \`Popover\`.
+
+**Accessibility**
+
+- Follows the ARIA menu button pattern: arrow keys, Home/End and typing a label move between items, Enter or Space runs one, Escape closes and returns focus to the button.
+- The trigger needs an accessible name; with \`IconButton\`, use its \`label\`.
+- Keep item labels short and with distinct first letters, so typing finds them.`,
+      },
+    },
+  },
   args: {
     trigger: (
       <Button variant="outline" endIcon={<ChevronDownIcon />}>
@@ -62,6 +85,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Open: Story = {
+  // Left out of the docs page, where the open overlay would take over the page.
+  tags: ['!autodocs'],
   args: { defaultOpen: true },
 };
 

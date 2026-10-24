@@ -6,6 +6,11 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 A React + TypeScript component library and design system, built with accessibility, theming and developer experience as first-class concerns.
 
+- **Accessible by default**: keyboard support, focus management and ARIA patterns that follow the WAI-ARIA Authoring Practices, checked with axe in every story.
+- **Themeable**: every visual decision is a design token exposed as a CSS custom property, with light and dark themes that meet WCAG AA contrast.
+- **Typed**: written in strict TypeScript, including polymorphic components that render as another element with `as`.
+- **Lightweight**: plain CSS Modules, no CSS-in-JS runtime, and ES modules that tree-shake.
+
 ## Installation
 
 ```bash
@@ -16,9 +21,58 @@ npm install @vitinnczk/ui
 
 ## Usage
 
+Import the stylesheet once, at the entry point of your app, and wrap the app in `ThemeProvider`:
+
 ```tsx
 import '@vitinnczk/ui/styles.css';
+import { createRoot } from 'react-dom/client';
+import { ThemeProvider } from '@vitinnczk/ui';
+import { App } from './App';
+
+createRoot(document.getElementById('root')!).render(
+  <ThemeProvider defaultTheme="system">
+    <App />
+  </ThemeProvider>,
+);
 ```
+
+Then import the components you need:
+
+```tsx
+import { Button, FormField, Input, useToast } from '@vitinnczk/ui';
+
+export function NewsletterForm() {
+  const { toast } = useToast();
+
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        toast({ intent: 'success', title: 'You are subscribed' });
+      }}
+    >
+      <FormField label="Email" helperText="One email a month, no spam." required>
+        <Input type="email" autoComplete="email" />
+      </FormField>
+      <Button type="submit">Subscribe</Button>
+    </form>
+  );
+}
+```
+
+`useToast` needs a `ToastProvider` above it, usually next to the `ThemeProvider`.
+
+`styles.css` holds the reset, the base styles, the tokens and both themes. Your own CSS can use the same tokens, so it follows the theme too:
+
+```css
+.sidebar {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-inline-end: var(--border-width-thin) solid var(--color-border);
+}
+```
+
+The token values are also exported as JavaScript objects (`spacing`, `palette`, `themes`…) for charts, canvas or tests.
 
 ## Principles
 
@@ -26,3 +80,19 @@ import '@vitinnczk/ui/styles.css';
 2. **Tokens over hardcoded values.** No component uses a raw color, size or spacing value.
 3. **Composable APIs.** Small components that combine well beat large components with dozens of props.
 4. **Predictable behavior.** Interaction patterns follow established standards instead of reinventing them.
+
+## Finding your way around
+
+- **[Theming](?path=/docs/theming-guide--docs)**: light, dark and system modes, persistence, reduced motion and custom themes.
+- **[Foundations](?path=/docs/foundations-tokens--docs)**: the design tokens (colors, typography, spacing, radius, shadows, motion, z-index and sizes), the focus ring and the low-level `Portal` and `VisuallyHidden`.
+- **Components**, grouped by purpose: **Primitives**, **Forms**, **Feedback**, **Overlays**, **Navigation** and **Data display**.
+
+Each component has a **Docs** page with:
+
+- when to use it, when not to (and what to use instead) and its accessibility notes;
+- live examples with their code (**Show code**);
+- a props table generated from the TypeScript types, with controls to try each prop.
+
+The individual stories below each Docs page show one state at a time. Use the toolbar to switch between the light and dark themes, and the **Accessibility** panel to see the axe results for the current story.
+
+The source code is on [GitHub](https://github.com/VitinnCZK/synthax-ui).
