@@ -1,10 +1,10 @@
 import { breakpoints } from './breakpoints';
 import { baseColors, palette } from './colors';
-import { duration, easing } from './motion';
+import { duration, easing, reducedMotionDuration } from './motion';
 import { radius } from './radius';
-import { semanticColors } from './semantic-colors';
-import { shadowColor, shadows } from './shadows';
+import { shadows } from './shadows';
 import { spacing } from './spacing';
+import { themes, type ThemeName } from './themes';
 import { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } from './typography';
 import { zIndex } from './z-index';
 
@@ -12,9 +12,9 @@ export * from './breakpoints';
 export * from './colors';
 export * from './motion';
 export * from './radius';
-export * from './semantic-colors';
 export * from './shadows';
 export * from './spacing';
+export * from './themes';
 export * from './typography';
 export * from './z-index';
 
@@ -26,8 +26,8 @@ const prefixed = (prefix: string, values: Record<string | number, string>) =>
   ) as Record<CssVariable, string>;
 
 /**
- * Every token as `custom property name → value`. The `.css` files next to this one declare
- * exactly these variables, which `tokens.test.ts` enforces.
+ * Every theme-independent token as `custom property name → value`, declared on `:root` by the
+ * `.css` files next to this one. `tokens.test.ts` keeps the two in sync.
  */
 export const cssVariables: Record<CssVariable, string> = {
   ...prefixed('color', baseColors),
@@ -35,7 +35,6 @@ export const cssVariables: Record<CssVariable, string> = {
     {},
     ...Object.entries(palette).map(([color, scale]) => prefixed(`color-${color}`, scale)),
   ),
-  ...prefixed('color', semanticColors),
   ...prefixed('font-family', fontFamily),
   ...prefixed('font-size', fontSize),
   ...prefixed('font-weight', fontWeight),
@@ -43,10 +42,23 @@ export const cssVariables: Record<CssVariable, string> = {
   ...prefixed('letter-spacing', letterSpacing),
   ...prefixed('space', spacing),
   ...prefixed('radius', radius),
-  '--shadow-color': shadowColor,
   ...prefixed('shadow', shadows),
   ...prefixed('duration', duration),
   ...prefixed('easing', easing),
   ...prefixed('z-index', zIndex),
   ...prefixed('breakpoint', breakpoints),
 };
+
+/** Variables each theme declares in its `[data-theme='<name>']` block. */
+export const themeVariables = Object.fromEntries(
+  Object.entries(themes).map(([name, theme]): [string, Record<CssVariable, string>] => [
+    name,
+    { ...prefixed('color', theme.colors), '--shadow-color': theme.shadowColor },
+  ]),
+) as Record<ThemeName, Record<CssVariable, string>>;
+
+/** Overrides applied under `@media (prefers-reduced-motion: reduce)`. */
+export const reducedMotionVariables = prefixed(
+  'duration',
+  Object.fromEntries(Object.keys(duration).map((key) => [key, reducedMotionDuration])),
+);

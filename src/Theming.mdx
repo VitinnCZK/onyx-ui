@@ -1,0 +1,155 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Theming/Guide" />
+
+# Theming
+
+Every visual decision lives in design tokens exposed as CSS custom properties. Tokens come in two layers:
+
+- **Base tokens** on `:root`: the color palette (`--color-primary-600`…), typography, spacing, radius, shadows, motion, z-index and breakpoints. They don't change between themes.
+- **Semantic colors** (`--color-bg`, `--color-text`, `--color-primary`, `--color-focus`…), which point at the palette. Components only use these, so **a theme is a block that redefines the semantic layer**.
+
+The library ships two themes, both meeting WCAG AA contrast (4.5:1 for text, 3:1 for UI), which a unit test enforces:
+
+```css
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: var(--color-white);
+  --color-text: var(--color-neutral-900);
+  /* … */
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: var(--color-neutral-900);
+  --color-text: var(--color-neutral-50);
+  /* … */
+}
+```
+
+## ThemeProvider
+
+`ThemeProvider` sets `data-theme` on `<html>` and keeps it up to date.
+
+```tsx
+import '@vitinnczk/ui/styles.css';
+import { ThemeProvider } from '@vitinnczk/ui';
+
+<ThemeProvider defaultTheme="system">
+  <App />
+</ThemeProvider>;
+```
+
+| Prop           | Type                                      | Default       | Description                                         |
+| -------------- | ----------------------------------------- | ------------- | --------------------------------------------------- |
+| `defaultTheme` | `'light' \| 'dark' \| 'system' \| string` | `'system'`    | Theme used until the user picks one.                |
+| `storageKey`   | `string`                                  | `'vui-theme'` | `localStorage` key where the user's choice is kept. |
+
+- **`system`** follows `prefers-color-scheme` and switches live when the operating system changes.
+- **Persistence**: `setTheme` saves the choice in `localStorage` (`system` included) and every tab follows it. If storage is blocked, the choice still applies for the rest of the visit.
+- **SSR**: the server and the hydration pass render with `defaultTheme`; the stored choice is applied right after, without hydration mismatches.
+
+## useTheme
+
+```tsx
+import { useTheme } from '@vitinnczk/ui';
+
+function ThemeToggle() {
+  const { theme, resolvedTheme, setTheme } = useTheme();
+
+  return (
+    <button type="button" onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}>
+      Use {resolvedTheme === 'dark' ? 'light' : 'dark'} theme
+    </button>
+  );
+}
+```
+
+- `theme`: the choice, `system` included.
+- `resolvedTheme`: what is applied, with `system` resolved to `light` or `dark`.
+- `setTheme(theme)`: switches and persists.
+
+## Creating a custom theme
+
+### Recolor the light theme
+
+The semantic colors point at the palette, so redefining a palette scale under your theme name recolors everything built on it (fills, hover and active states, focus ring, tinted backgrounds). Override the whole scale, not a single step:
+
+```css
+[data-theme='brand'] {
+  --color-primary-50: #f5f3ff;
+  --color-primary-100: #ede9fe;
+  --color-primary-200: #ddd6fe;
+  --color-primary-300: #c4b5fd;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+  --radius-md: 4px;
+  --font-family-base: 'Inter', system-ui, sans-serif;
+}
+```
+
+```tsx
+<ThemeProvider defaultTheme="brand">...</ThemeProvider>
+```
+
+A custom theme only overrides what it declares. Everything else comes from the light theme on `:root`.
+
+### Start from the dark theme or change the semantic layer
+
+To build a dark variant, or to change what a role points at, redefine the semantic colors themselves. Declare all of them, plus `color-scheme` and `--shadow-color`, so nothing falls back to the light values:
+
+```css
+[data-theme='midnight'] {
+  color-scheme: dark;
+  --shadow-color: 0 0 0;
+  --color-bg: #0b1020;
+  --color-surface: #0b1020;
+  --color-surface-raised: #141b2d;
+  --color-text: var(--color-neutral-50);
+  --color-primary: var(--color-info-400);
+  /* …every other --color-* semantic token */
+}
+```
+
+Check the new combinations for contrast: text needs 4.5:1 against every background it sits on, and control borders, focus rings and fills need 3:1.
+
+### Theming part of the page
+
+Theme blocks redefine the semantic layer on the element that carries the attribute, so a subtree can use another theme:
+
+```tsx
+<section data-theme="dark">…</section>
+```
+
+This works for `light`, `dark` and any theme that declares semantic colors. A theme that only overrides the palette, like `brand` above, needs to be on `<html>`: the semantic colors are resolved where they are declared, and `:root` is the only place the light theme declares them.
+
+## Avoiding a flash of the wrong theme
+
+With server rendering, the page is painted before React runs. To apply the stored theme before the first paint, add this script to `<head>`, using the same `storageKey` and `defaultTheme` as the `ThemeProvider`:
+
+```html
+<script>
+  try {
+    var theme = localStorage.getItem('vui-theme') || 'system';
+    if (theme === 'system') {
+      theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (error) {}
+</script>
+```
+
+## Reduced motion
+
+Under `prefers-reduced-motion: reduce`, every `--duration-*` token becomes `0.01ms`, so anything animated with the motion tokens stops moving. The value is not `0ms`, so `transitionend` and `animationend` still fire. Use the tokens for every transition and animation so they follow this setting:
+
+```css
+.panel {
+  transition: opacity var(--duration-normal) var(--easing-enter);
+}
+```

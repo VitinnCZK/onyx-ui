@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { contrastRatio } from '@/test/contrast';
-import { cssVariables, semanticColors, type CssVariable, type SemanticColor } from '.';
+import { cssVariables, lightColors, themeVariables, type CssVariable, type SemanticColor } from '.';
 
 /** WCAG AA minimums: 1.4.3 for text, 1.4.11 for UI components and focus indicators. */
 const minimum = { text: 4.5, ui: 3 } as const;
@@ -40,13 +40,13 @@ const exempt: Partial<Record<SemanticColor, string>> = {
   ),
 };
 
-/**
- * Themes to check, as complete variable maps. A theme that overrides the semantic layer
- * (e.g. dark) is added here as `{ ...cssVariables, ...overrides }`.
- */
-const themes: Record<string, Record<CssVariable, string>> = {
-  light: cssVariables,
-};
+/** Every built-in theme, as the complete set of variables an element sees under it. */
+const themes = Object.fromEntries(
+  Object.entries(themeVariables).map(([name, variables]) => [
+    name,
+    { ...cssVariables, ...variables },
+  ]),
+);
 
 function resolveColor(variables: Record<CssVariable, string>, name: CssVariable): string {
   let value = variables[name];
@@ -69,7 +69,7 @@ describe.each(Object.entries(themes))('%s theme contrast', (_theme, variables) =
 describe('contrast coverage', () => {
   it('checks or explicitly exempts every semantic color', () => {
     const checked = new Set(pairs.flatMap(({ fg, bg }) => [fg, bg]));
-    const unchecked = Object.keys(semanticColors).filter(
+    const unchecked = Object.keys(lightColors).filter(
       (token) => !checked.has(token as SemanticColor) && !(token in exempt),
     );
 

@@ -1,8 +1,11 @@
 /*
- * Semantic colors: the only colors components use. They point at the palette, so a theme
- * (e.g. `[data-theme='dark']`) only has to redefine this block. Mirrors `semantic-colors.ts`.
+ * Light theme, also the default on :root. Redefines the semantic layer only; components
+ * never read the palette directly. Mirrors `themes.light` in src/tokens/themes.ts.
  */
-:root {
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
   /* Backgrounds and surfaces */
   --color-bg: var(--color-white);
   --color-bg-subtle: var(--color-neutral-50);
@@ -63,4 +66,7 @@
   --color-info-subtle: var(--color-info-50);
   --color-info-text: var(--color-info-800);
   --color-info-border: var(--color-info-200);
+
+  /* Shadows */
+  --shadow-color: 24 24 27;
 }

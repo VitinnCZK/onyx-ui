@@ -1,7 +1,7 @@
-/** RGB channels of the shadow color, so a theme can recolor every shadow at once. */
-export const shadowColor = '24 24 27';
-
-/** Elevation scale, from barely lifted (`xs`) to floating above the page (`xl`). */
+/**
+ * Elevation scale, from barely lifted (`xs`) to floating above the page (`xl`). The color comes
+ * from `--shadow-color` (RGB channels), which each theme sets.
+ */
 export const shadows = {
   none: 'none',
   xs: '0 1px 2px 0 rgb(var(--shadow-color) / 0.05)',

@@ -1,9 +1,8 @@
 /*
- * Shadow / elevation scale. --shadow-color holds RGB channels so a theme can recolor
- * every shadow at once. Mirrors shadows.ts.
+ * Shadow / elevation scale. The color comes from --shadow-color (RGB channels), which each
+ * theme sets in src/styles/themes/. Mirrors shadows.ts.
  */
 :root {
-  --shadow-color: 24 24 27;
   --shadow-none: none;
   --shadow-xs: 0 1px 2px 0 rgb(var(--shadow-color) / 0.05);
   --shadow-sm:

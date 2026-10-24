@@ -1,6 +1,20 @@
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/react-vite';
+import type { Decorator, Preview } from '@storybook/react-vite';
 import '../src/styles/index.css';
+import './preview.css';
+
+const withToolbarTheme = withThemeByDataAttribute({
+  themes: {
+    light: 'light',
+    dark: 'dark',
+  },
+  defaultTheme: 'light',
+  attributeName: 'data-theme',
+});
+
+// Stories that set `parameters.themes.disable` (e.g. ThemeProvider) own `data-theme` themselves.
+const withTheme: Decorator = (Story, context) =>
+  context.parameters.themes?.disable ? Story() : withToolbarTheme(Story, context);
 
 const preview: Preview = {
   parameters: {
@@ -15,16 +29,7 @@ const preview: Preview = {
       test: 'error',
     },
   },
-  decorators: [
-    withThemeByDataAttribute({
-      themes: {
-        light: 'light',
-        dark: 'dark',
-      },
-      defaultTheme: 'light',
-      attributeName: 'data-theme',
-    }),
-  ],
+  decorators: [withTheme],
 };
 
 export default preview;

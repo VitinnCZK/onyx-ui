@@ -15,3 +15,9 @@ export const easing = {
   /** Elements leaving the screen: start slowly, leave fast. */
   exit: 'cubic-bezier(0.4, 0, 1, 1)',
 } as const;
+
+/**
+ * Every duration under `prefers-reduced-motion: reduce`. Practically instant, but not `0ms`,
+ * so `transitionend` and `animationend` still fire for code that waits on them.
+ */
+export const reducedMotionDuration = '0.01ms';

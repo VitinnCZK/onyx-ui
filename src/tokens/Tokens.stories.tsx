@@ -8,10 +8,11 @@ import {
   fontWeight,
   lineHeight,
   palette,
+  lightColors,
   radius,
-  semanticColors,
   shadows,
   spacing,
+  themeVariables,
   type CssVariable,
 } from '.';
 
@@ -35,13 +36,25 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-function Swatch({ name, label }: { name: CssVariable; label: string }) {
+function Swatch({
+  name,
+  label,
+  values = [cssVariables[name]],
+}: {
+  name: CssVariable;
+  label: string;
+  values?: (string | undefined)[];
+}) {
   return (
     <li className={styles.item}>
       <div className={styles.swatch} style={{ background: cssVar(name) }} />
       <span className={styles.label}>{label}</span>
       <code className={styles.meta}>{name}</code>
-      <code className={styles.meta}>{cssVariables[name]}</code>
+      {values.map((value) => (
+        <code key={value} className={styles.meta}>
+          {value}
+        </code>
+      ))}
     </li>
   );
 }
@@ -74,9 +87,13 @@ export const SemanticColors: Story = {
     <div className={styles.page}>
       <Section title="Semantic colors">
         <ul className={styles.grid}>
-          {Object.keys(semanticColors).map((token) => (
-            <Swatch key={token} name={`--color-${token}`} label={token} />
-          ))}
+          {Object.keys(lightColors).map((token) => {
+            const name: CssVariable = `--color-${token}`;
+            const values = Object.entries(themeVariables).map(
+              ([theme, variables]) => `${theme}: ${variables[name]}`,
+            );
+            return <Swatch key={token} name={name} label={token} values={values} />;
+          })}
         </ul>
       </Section>
     </div>
