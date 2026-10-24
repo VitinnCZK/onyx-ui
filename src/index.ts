@@ -1,5 +1,7 @@
 import './styles/index.css';
 
+export { Portal } from './components/Portal';
+export type { PortalProps } from './components/Portal';
 export { ThemeProvider, useTheme } from './components/ThemeProvider';
 export type {
   ResolvedTheme,
@@ -7,6 +9,15 @@ export type {
   ThemeContextValue,
   ThemeProviderProps,
 } from './components/ThemeProvider';
+export { VisuallyHidden } from './components/VisuallyHidden';
+export type { VisuallyHiddenProps } from './components/VisuallyHidden';
+export { useClickOutside, useControllableState, useEscapeKey, useFocusTrap } from './hooks';
+export type {
+  UseClickOutsideOptions,
+  UseControllableStateProps,
+  UseEscapeKeyOptions,
+  UseFocusTrapOptions,
+} from './hooks';
 export {
   baseColors,
   breakpoints,
@@ -14,6 +25,7 @@ export {
   darkColors,
   duration,
   easing,
+  focusRing,
   fontFamily,
   fontSize,
   fontWeight,
@@ -42,3 +54,9 @@ export type {
 } from './tokens';
 export { cn } from './utils/cn';
 export type { ClassValue } from './utils/cn';
+export type {
+  PolymorphicComponent,
+  PolymorphicProps,
+  PolymorphicPropsWithRef,
+  PolymorphicRef,
+} from './utils/polymorphic';

@@ -1,7 +1,6 @@
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import type { Decorator, Preview } from '@storybook/react-vite';
 import '../src/styles/index.css';
-import './preview.css';
 
 const withToolbarTheme = withThemeByDataAttribute({
   themes: {

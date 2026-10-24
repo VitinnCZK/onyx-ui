@@ -1,0 +1,34 @@
+.demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.button {
+  composes: focusRing from './focus-ring.module.css';
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-primary-hover);
+}
+
+.link {
+  composes: focusRing from './focus-ring.module.css';
+  color: var(--color-primary-text);
+  border-radius: var(--radius-sm);
+}
+
+.input {
+  composes: focusRing from './focus-ring.module.css';
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+}

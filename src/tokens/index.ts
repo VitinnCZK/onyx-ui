@@ -1,5 +1,6 @@
 import { breakpoints } from './breakpoints';
 import { baseColors, palette } from './colors';
+import { focusRing } from './focus';
 import { duration, easing, reducedMotionDuration } from './motion';
 import { radius } from './radius';
 import { shadows } from './shadows';
@@ -10,6 +11,7 @@ import { zIndex } from './z-index';
 
 export * from './breakpoints';
 export * from './colors';
+export * from './focus';
 export * from './motion';
 export * from './radius';
 export * from './shadows';
@@ -47,6 +49,7 @@ export const cssVariables: Record<CssVariable, string> = {
   ...prefixed('easing', easing),
   ...prefixed('z-index', zIndex),
   ...prefixed('breakpoint', breakpoints),
+  ...prefixed('focus-ring', focusRing),
 };
 
 /** Variables each theme declares in its `[data-theme='<name>']` block. */

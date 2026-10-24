@@ -1,6 +1,0 @@
-/* Storybook only: paints the canvas with the active theme, since the library has no base styles yet. */
-body {
-  font-family: var(--font-family-base);
-  color: var(--color-text);
-  background: var(--color-bg);
-}

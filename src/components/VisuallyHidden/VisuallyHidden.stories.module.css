@@ -1,0 +1,28 @@
+.iconButton {
+  composes: focusRing from '../../styles/focus-ring.module.css';
+  display: inline-grid;
+  place-items: center;
+  padding: var(--space-3);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background: var(--color-bg-muted);
+}
+
+.icon {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
+.search {
+  composes: focusRing from '../../styles/focus-ring.module.css';
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+}
