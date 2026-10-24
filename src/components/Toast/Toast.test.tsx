@@ -157,6 +157,49 @@ describe('Toast', () => {
     expect(items()[1]).toHaveFocus();
   });
 
+  it('returns focus to where it was when the focused toast closes', () => {
+    const { toast } = setup();
+    const before = document.createElement('button');
+    document.body.append(before);
+    before.focus();
+
+    toast({ title: 'One', duration: null });
+    toast({ title: 'Two', duration: null });
+    fireEvent.keyDown(document, { key: 'F8' });
+    fireEvent.keyDown(items()[1]!, { key: 'Escape' });
+
+    expect(items()).toHaveLength(1);
+    expect(before).toHaveFocus();
+    before.remove();
+  });
+
+  it('moves focus to the next toast when there is nowhere to go back to', () => {
+    const { toast } = setup();
+
+    toast({ title: 'One', duration: null });
+    toast({ title: 'Two', duration: null });
+    act(() => items()[1]!.focus());
+    fireEvent.keyDown(items()[1]!, { key: 'Escape' });
+
+    expect(items()[0]).toHaveFocus();
+  });
+
+  it('keeps closing toasts on time after the focused one is dismissed', () => {
+    const { toast } = setup({ duration: 3000 });
+    const before = document.createElement('button');
+    document.body.append(before);
+    before.focus();
+
+    toast({ title: 'One' });
+    toast({ title: 'Two', duration: null });
+    fireEvent.keyDown(document, { key: 'F8' });
+    fireEvent.keyDown(items()[1]!, { key: 'Escape' });
+    act(() => vi.advanceTimersByTime(3000));
+
+    expect(items()).toHaveLength(0);
+    before.remove();
+  });
+
   it('announces danger toasts assertively', () => {
     const { toast } = setup();
 

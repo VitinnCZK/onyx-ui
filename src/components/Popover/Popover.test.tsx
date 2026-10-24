@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { createRef, useRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
@@ -68,6 +68,25 @@ describe('Popover', () => {
     await userEvent.click(document.body);
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('returns focus to the trigger when a click outside lands on nothing focusable', async () => {
+    render(<Example defaultOpen />);
+
+    await userEvent.click(document.body);
+
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Share' })).toHaveFocus());
+  });
+
+  it('leaves focus on the control a click outside lands on', async () => {
+    render(<Example defaultOpen />);
+    const after = screen.getByRole('button', { name: 'After' });
+
+    await userEvent.click(after);
+    await new Promise((resolve) => setTimeout(resolve));
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(after).toHaveFocus();
   });
 
   it('focuses the initial focus element and has a close button', async () => {

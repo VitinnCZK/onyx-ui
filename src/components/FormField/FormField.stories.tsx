@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import styles from '@/styles/story-layout.module.css';
 import { Button } from '../Button';
 import { Input } from '../Input';
@@ -77,6 +78,7 @@ export const Controls: Story = {
 function ValidationDemo() {
   const [value, setValue] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const input = useRef<HTMLInputElement>(null);
   const error = submitted && !value.includes('@') ? 'Enter a valid email address.' : undefined;
 
   return (
@@ -85,11 +87,18 @@ function ValidationDemo() {
       noValidate
       onSubmit={(event) => {
         event.preventDefault();
-        setSubmitted(true);
+        // Render the error first, so screen readers read it when focus lands on the field.
+        flushSync(() => setSubmitted(true));
+        if (!value.includes('@')) input.current?.focus();
       }}
     >
       <FormField label="Email" helperText="Used to sign in." error={error} required>
-        <Input type="email" value={value} onChange={(event) => setValue(event.target.value)} />
+        <Input
+          ref={input}
+          type="email"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
       </FormField>
       <Button type="submit">Save</Button>
     </form>

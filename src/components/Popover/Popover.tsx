@@ -21,6 +21,7 @@ import { cn } from '@/utils/cn';
 import { useFloatingLayer, type Placement } from '@/utils/floating';
 import { getElementRef } from '@/utils/getElementRef';
 import { mergeRefs } from '@/utils/mergeRefs';
+import { refocusIfLost } from '@/utils/refocusIfLost';
 import { CloseIcon } from '../Icon';
 import { IconButton } from '../IconButton';
 import styles from './Popover.module.css';
@@ -135,7 +136,14 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover
   };
 
   useEscapeKey(() => close(true), { enabled: open });
-  useClickOutside([panel, { current: triggerNode }], () => close(false), { enabled: open });
+  useClickOutside(
+    [panel, { current: triggerNode }],
+    () => {
+      close(false);
+      refocusIfLost(triggerNode);
+    },
+    { enabled: open },
+  );
 
   const triggerElement = isValidElement(trigger)
     ? cloneElement(trigger, {

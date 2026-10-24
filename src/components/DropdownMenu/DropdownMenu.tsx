@@ -24,6 +24,7 @@ import { cn } from '@/utils/cn';
 import { useFloatingLayer, type Placement } from '@/utils/floating';
 import { getElementRef } from '@/utils/getElementRef';
 import { mergeRefs } from '@/utils/mergeRefs';
+import { refocusIfLost } from '@/utils/refocusIfLost';
 import { Portal } from '../Portal';
 import styles from './DropdownMenu.module.css';
 
@@ -132,7 +133,14 @@ export function DropdownMenu({
   };
 
   useEscapeKey(() => close(), { enabled: open });
-  useClickOutside([menu, { current: triggerNode }], () => close(false), { enabled: open });
+  useClickOutside(
+    [menu, { current: triggerNode }],
+    () => {
+      close(false);
+      refocusIfLost(triggerNode);
+    },
+    { enabled: open },
+  );
 
   const openWith = (target: 'first' | 'last') => {
     setFocusOnOpen(target);

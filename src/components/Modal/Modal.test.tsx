@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { createRef, useRef, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
@@ -88,6 +88,16 @@ describe('Modal', () => {
 
     await userEvent.click(dialog.previousElementSibling!);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('returns focus to the trigger after an overlay click', async () => {
+    render(<Uncontrolled />);
+    const trigger = screen.getByRole('button', { name: 'Open' });
+
+    await userEvent.click(trigger);
+    await userEvent.click(screen.getByRole('dialog').previousElementSibling!);
+
+    await waitFor(() => expect(trigger).toHaveFocus());
   });
 
   it('can ignore the overlay click and Escape', async () => {

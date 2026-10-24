@@ -1,4 +1,5 @@
 import { useEffect, type RefObject } from 'react';
+import { refocusIfLost } from '@/utils/refocusIfLost';
 import { useLatestRef } from './useLatestRef';
 
 export interface UseFocusTrapOptions {
@@ -66,6 +67,7 @@ export function useFocusTrap(
     const restoreFocus = () => {
       if (!options.current.returnFocus || !(previouslyFocused instanceof HTMLElement)) return;
       if (previouslyFocused.isConnected) previouslyFocused.focus();
+      refocusIfLost(previouslyFocused);
     };
 
     if (!container.contains(document.activeElement)) focusFirst();

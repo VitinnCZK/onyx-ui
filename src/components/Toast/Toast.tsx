@@ -116,14 +116,35 @@ export function ToastProvider({
   const counter = useRef(0);
   const [list, setList] = useState<HTMLOListElement | null>(null);
   const toastsRef = useRef(toasts);
+  const listRef = useRef(list);
+  const returnFocus = useRef<HTMLElement | null>(null);
+  const pendingFocus = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     toastsRef.current = toasts;
+    listRef.current = list;
   });
+
+  useEffect(() => {
+    pendingFocus.current?.focus();
+    pendingFocus.current = null;
+  }, [toasts]);
 
   const dismiss = useCallback((id?: string) => {
     const closing = toastsRef.current.filter((toast) => id === undefined || toast.id === id);
     for (const toast of closing) toast.onDismiss?.();
+
+    // Removing the toast that holds focus would drop it on the page body.
+    const items = [...(listRef.current?.querySelectorAll<HTMLElement>('[data-toast]') ?? [])];
+    const isClosing = (item: HTMLElement) =>
+      closing.some((toast) => toast.id === item.dataset.toast);
+    if (items.some((item) => isClosing(item) && item.contains(document.activeElement))) {
+      const remaining = items.filter((item) => !isClosing(item)).at(-1);
+      const previous = returnFocus.current?.isConnected ? returnFocus.current : null;
+      pendingFocus.current = previous ?? remaining ?? null;
+      if (pendingFocus.current !== remaining) setFocused(false);
+    }
+
     setToasts((current) => (id === undefined ? [] : current.filter((toast) => toast.id !== id)));
   }, []);
 
@@ -145,6 +166,9 @@ export function ToastProvider({
       const newest = [...list.querySelectorAll<HTMLElement>('[data-toast]')].at(-1);
       if (!newest) return;
       event.preventDefault();
+      if (!list.contains(document.activeElement)) {
+        returnFocus.current = document.activeElement as HTMLElement | null;
+      }
       newest.focus();
     };
     const onEscape = (event: KeyboardEvent) => {
@@ -157,7 +181,9 @@ export function ToastProvider({
     const onPointerLeave = () => setHovered(false);
     const onFocusIn = () => setFocused(true);
     const onFocusOut = (event: FocusEvent) => {
-      if (!list.contains(event.relatedTarget as Node | null)) setFocused(false);
+      if (list.contains(event.relatedTarget as Node | null)) return;
+      setFocused(false);
+      returnFocus.current = null;
     };
 
     document.addEventListener('keydown', onHotkey);
