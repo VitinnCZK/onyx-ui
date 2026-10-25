@@ -44,7 +44,7 @@ export default defineConfig({
   css: {
     modules: {
       localsConvention: 'camelCaseOnly',
-      generateScopedName: 'vui-[local]-[hash:base64:5]',
+      generateScopedName: 'onyx-[local]-[hash:base64:5]',
     },
   },
   build: {

@@ -5,7 +5,7 @@ import { ThemeProvider, useTheme, type Theme } from '.';
 const meta = {
   title: 'Theming/ThemeProvider',
   component: ThemeProvider,
-  args: { defaultTheme: 'system', storageKey: 'vui-theme-storybook' },
+  args: { defaultTheme: 'system', storageKey: 'onyx-theme-storybook' },
   argTypes: {
     defaultTheme: { control: 'inline-radio', options: ['light', 'dark', 'system'] },
   },

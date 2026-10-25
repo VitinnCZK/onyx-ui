@@ -11,7 +11,7 @@ function storybookCwd() {
   const root = process.cwd();
   if (!/[[\]{}*?]/.test(root)) return root;
 
-  const link = join(tmpdir(), 'synthax-ui-storybook');
+  const link = join(tmpdir(), 'onyx-ui-storybook');
   if (!existsSync(join(link, 'package.json'))) {
     if (existsSync(link)) rmdirSync(link);
     symlinkSync(root, link, 'junction');

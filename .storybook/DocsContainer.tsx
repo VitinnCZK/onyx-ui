@@ -10,13 +10,13 @@ import { baseColors, palette } from '../src/tokens';
 const docsThemes = {
   light: create({
     base: 'light',
-    brandTitle: '@vitinnczk/ui',
+    brandTitle: 'Onyx UI',
     appContentBg: baseColors.white,
     colorSecondary: palette.primary[600],
   }),
   dark: create({
     base: 'dark',
-    brandTitle: '@vitinnczk/ui',
+    brandTitle: 'Onyx UI',
     appContentBg: palette.neutral[900],
     appPreviewBg: palette.neutral[900],
     colorSecondary: palette.primary[400],

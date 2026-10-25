@@ -12,15 +12,15 @@ const SINGLE_COMPONENT_LIMIT = 3 * 1024;
 const MAX_SHARE_OF_FULL_BUNDLE = 0.1;
 
 const entries = {
-  button: "export { Button } from '@vitinnczk/ui';",
-  all: "export * from '@vitinnczk/ui';",
+  button: "export { Button } from '@vitinnczk/onyx-ui';",
+  all: "export * from '@vitinnczk/onyx-ui';",
 };
 
 async function bundle(code) {
   const result = await build({
     configFile: false,
     logLevel: 'silent',
-    resolve: { alias: { '@vitinnczk/ui': distEntry } },
+    resolve: { alias: { '@vitinnczk/onyx-ui': distEntry } },
     plugins: [
       {
         name: 'virtual-entry',

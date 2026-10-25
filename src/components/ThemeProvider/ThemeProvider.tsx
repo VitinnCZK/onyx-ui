@@ -33,7 +33,7 @@ export interface ThemeProviderProps {
   defaultTheme?: Theme;
   /**
    * `localStorage` key that persists the user's choice.
-   * @default 'vui-theme'
+   * @default 'onyx-theme'
    */
   storageKey?: string;
   children?: ReactNode;
@@ -63,7 +63,7 @@ const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : us
  */
 export function ThemeProvider({
   defaultTheme = 'system',
-  storageKey = 'vui-theme',
+  storageKey = 'onyx-theme',
   children,
 }: ThemeProviderProps) {
   const storedTheme = useSyncExternalStore(

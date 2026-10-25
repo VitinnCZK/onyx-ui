@@ -110,7 +110,7 @@ describe('ThemeProvider', () => {
   });
 
   it('restores the persisted choice', () => {
-    localStorage.setItem('vui-theme', 'dark');
+    localStorage.setItem('onyx-theme', 'dark');
     renderTheme({ defaultTheme: 'light' });
 
     expect(shown('theme')).toBe('dark');
@@ -118,12 +118,12 @@ describe('ThemeProvider', () => {
   });
 
   it('persists system as a choice of its own', async () => {
-    localStorage.setItem('vui-theme', 'dark');
+    localStorage.setItem('onyx-theme', 'dark');
     renderTheme();
 
     await userEvent.click(screen.getByRole('button', { name: 'System' }));
 
-    expect(localStorage.getItem('vui-theme')).toBe('system');
+    expect(localStorage.getItem('onyx-theme')).toBe('system');
     expect(appliedTheme()).toBe('light');
   });
 
@@ -145,8 +145,8 @@ describe('ThemeProvider', () => {
     renderTheme();
 
     act(() => {
-      localStorage.setItem('vui-theme', 'dark');
-      window.dispatchEvent(new StorageEvent('storage', { key: 'vui-theme', newValue: 'dark' }));
+      localStorage.setItem('onyx-theme', 'dark');
+      window.dispatchEvent(new StorageEvent('storage', { key: 'onyx-theme', newValue: 'dark' }));
     });
 
     expect(appliedTheme()).toBe('dark');
@@ -163,7 +163,7 @@ describe('ThemeProvider', () => {
   });
 
   it('renders on the server with defaultTheme, without touching the document', () => {
-    localStorage.setItem('vui-theme', 'light');
+    localStorage.setItem('onyx-theme', 'light');
 
     const html = renderToString(
       <ThemeProvider defaultTheme="dark">

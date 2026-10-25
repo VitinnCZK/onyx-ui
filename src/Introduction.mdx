@@ -2,7 +2,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Introduction" />
 
-# @vitinnczk/ui
+# Onyx UI
 
 A React + TypeScript component library and design system, built with accessibility, theming and developer experience as first-class concerns.
 
@@ -14,7 +14,7 @@ A React + TypeScript component library and design system, built with accessibili
 ## Installation
 
 ```bash
-npm install @vitinnczk/ui
+npm install @vitinnczk/onyx-ui
 ```
 
 `react` and `react-dom` (v18 or newer) are peer dependencies.
@@ -24,9 +24,9 @@ npm install @vitinnczk/ui
 Import the stylesheet once, at the entry point of your app, and wrap the app in `ThemeProvider`:
 
 ```tsx
-import '@vitinnczk/ui/styles.css';
+import '@vitinnczk/onyx-ui/styles.css';
 import { createRoot } from 'react-dom/client';
-import { ThemeProvider } from '@vitinnczk/ui';
+import { ThemeProvider } from '@vitinnczk/onyx-ui';
 import { App } from './App';
 
 createRoot(document.getElementById('root')!).render(
@@ -39,7 +39,7 @@ createRoot(document.getElementById('root')!).render(
 Then import the components you need:
 
 ```tsx
-import { Button, FormField, Input, useToast } from '@vitinnczk/ui';
+import { Button, FormField, Input, useToast } from '@vitinnczk/onyx-ui';
 
 export function NewsletterForm() {
   const { toast } = useToast();
@@ -95,4 +95,4 @@ Each component has a **Docs** page with:
 
 The individual stories below each Docs page show one state at a time. Use the toolbar to switch between the light and dark themes, and the **Accessibility** panel to see the axe results for the current story.
 
-The source code is on [GitHub](https://github.com/VitinnCZK/synthax-ui).
+The source code is on [GitHub](https://github.com/VitinnCZK/onyx-ui).

@@ -1,4 +1,4 @@
-# @vitinnczk/ui
+# @vitinnczk/onyx-ui
 
 ## 0.1.0
 

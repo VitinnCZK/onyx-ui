@@ -34,7 +34,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Every visual decision is a design token, exposed as a CSS custom property (`var(--space-4)`) and as a JavaScript object (`import { spacing } from '@vitinnczk/ui'`). Components only use semantic colors, never the palette, so a theme only redefines the semantic layer. Use the theme switcher in the toolbar to see the palette and scales in both themes.",
+          "Every visual decision is a design token, exposed as a CSS custom property (`var(--space-4)`) and as a JavaScript object (`import { spacing } from '@vitinnczk/onyx-ui'`). Components only use semantic colors, never the palette, so a theme only redefines the semantic layer. Use the theme switcher in the toolbar to see the palette and scales in both themes.",
       },
     },
   },

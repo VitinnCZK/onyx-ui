@@ -35,18 +35,18 @@ The library ships two themes, both meeting WCAG AA contrast (4.5:1 for text, 3:1
 `ThemeProvider` picks one of them by setting `data-theme` on `<html>`:
 
 ```tsx
-import '@vitinnczk/ui/styles.css';
-import { ThemeProvider } from '@vitinnczk/ui';
+import '@vitinnczk/onyx-ui/styles.css';
+import { ThemeProvider } from '@vitinnczk/onyx-ui';
 
 <ThemeProvider defaultTheme="system">
   <App />
 </ThemeProvider>;
 ```
 
-| Prop           | Type                                      | Default       | Description                                         |
-| -------------- | ----------------------------------------- | ------------- | --------------------------------------------------- |
-| `defaultTheme` | `'light' \| 'dark' \| 'system' \| string` | `'system'`    | Theme used until the user picks one.                |
-| `storageKey`   | `string`                                  | `'vui-theme'` | `localStorage` key where the user's choice is kept. |
+| Prop           | Type                                      | Default        | Description                                         |
+| -------------- | ----------------------------------------- | -------------- | --------------------------------------------------- |
+| `defaultTheme` | `'light' \| 'dark' \| 'system' \| string` | `'system'`     | Theme used until the user picks one.                |
+| `storageKey`   | `string`                                  | `'onyx-theme'` | `localStorage` key where the user's choice is kept. |
 
 - **`light`** and **`dark`** apply that theme.
 - **`system`** follows `prefers-color-scheme` and switches live when the operating system changes.
@@ -57,7 +57,7 @@ Try the three modes in [Theming › ThemeProvider](?path=/docs/theming-themeprov
 ## Switching themes with useTheme
 
 ```tsx
-import { useTheme, type Theme } from '@vitinnczk/ui';
+import { useTheme, type Theme } from '@vitinnczk/onyx-ui';
 
 const modes: Theme[] = ['light', 'dark', 'system'];
 
@@ -86,7 +86,7 @@ function ThemeSelect() {
 - `setTheme` saves the choice in `localStorage` under `storageKey`, `system` included, so the next visit starts with it.
 - Every open tab of the app follows a change made in another tab.
 - If storage is blocked (private mode, disabled cookies), the choice still applies for the rest of the visit.
-- To forget the choice, remove the key with `localStorage.removeItem('vui-theme')`; the next visit starts from `defaultTheme`.
+- To forget the choice, remove the key with `localStorage.removeItem('onyx-theme')`; the next visit starts from `defaultTheme`.
 
 ### Server rendering and the first paint
 
@@ -95,7 +95,7 @@ The server and the hydration pass render with `defaultTheme`; the stored choice 
 ```html
 <script>
   try {
-    var theme = localStorage.getItem('vui-theme') || 'system';
+    var theme = localStorage.getItem('onyx-theme') || 'system';
     if (theme === 'system') {
       theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
@@ -155,7 +155,7 @@ The semantic colors point at the palette, so redefining a palette scale under yo
 }
 ```
 
-Load this CSS after `@vitinnczk/ui/styles.css` and select the theme by name, as the default or through `setTheme('brand')`:
+Load this CSS after `@vitinnczk/onyx-ui/styles.css` and select the theme by name, as the default or through `setTheme('brand')`:
 
 ```tsx
 <ThemeProvider defaultTheme="brand">...</ThemeProvider>
