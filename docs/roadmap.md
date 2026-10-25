@@ -141,7 +141,7 @@ The plan that took Onyx UI from an empty repository to its first release, kept a
 - [x] Confirm tree-shaking works (import one component, check bundle size)
 - [x] Configure Changesets for versioning and changelog
 - [x] Publish first version to npm (as `@vitinnczk/ui`)
-- [ ] Publish `@vitinnczk/onyx-ui` and deprecate `@vitinnczk/ui`
+- [x] Publish `@vitinnczk/onyx-ui` and unpublish `@vitinnczk/ui`
 - [ ] Test the published package in a fresh Vite and Next.js project (passed with the local `npm pack` tarball; repeat with the published package)
 
 ## 8. CI/CD
