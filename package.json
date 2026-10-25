@@ -1,6 +1,6 @@
 {
   "name": "@vitinnczk/onyx-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A React + TypeScript component library and design system, built with accessibility, theming and developer experience as first-class concerns.",
   "license": "MIT",
   "author": "Vítor Mello",
